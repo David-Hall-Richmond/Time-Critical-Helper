@@ -28,25 +28,22 @@ namespace Linear_Foot_Calculator
         {
             InitializeComponent();
             piecesTextBox.Focus();
+            truckSizeComboBox.SelectedItem = "12ft Truck";
             
         }
+
+        /**************************
+         * Adding Pallets
+         * ************************/
 
         //adds a pallet to the list based on the current input, needs its own method
         private void addButton_Click(object sender, EventArgs e)
         {
-            int[] numBoxArray = new int[5];
             bool hasZero = false;
             TextBox[] inputBoxList = new TextBox[5]{ piecesTextBox, lengthTextBox,widthTextBox,heightTextBox,weightTextBox };
-           
-                for(int i = 0; i < inputBoxList.Length; i++)
-                {
-                    if (int.TryParse(inputBoxList[i].Text, out numBoxArray[i])) { }
-                    else
-                    {
-                        numBoxArray[i] = 0;
-                    hasZero = true;
-                    }
-                }
+            int[] numBoxArray = new int[5];
+
+            hasZero =loadFromInput(inputBoxList,numBoxArray);
 
             if (hasZero)
             {
@@ -58,17 +55,7 @@ namespace Linear_Foot_Calculator
                 PalletGroup newPallet = new PalletGroup(numBoxArray, stackCheckBox.Checked);
                 if (newPallet.checkDims())
                 {
-                    newPallet.checkSwap();
-                    if(newPallet.Stack && newPallet.Height > 48)
-                    {
-                        newPallet.Stack = false;
-                        MessageBox.Show("Stackable freight cannot exceed 48\"");
-                    }
-                        boxListBox.Items.Add(newPallet);
-                        clearEntryFields();
-                        calcAllButton.Enabled = true;
-                        boxListBox.Focus();
-                        boxListBox.SelectedIndex=(boxListBox.Items.Count - 1);
+                    addToPalletList(newPallet);
                 }
                 else
                 {
@@ -78,29 +65,122 @@ namespace Linear_Foot_Calculator
            
         }
 
+        //Checks the supplied pallet to see if the dims should be swapped to minimize linear feet
+        //adds the pallet to the ListBox and resets the entry and focus for next entry
+        private void addToPalletList(PalletGroup toAdd)
+        {
+
+            toAdd.checkSwap();
+
+            if (toAdd.Stack && toAdd.Height > 48)
+            {
+                toAdd.Stack = false;
+                MessageBox.Show("Stackable freight cannot exceed 48\"");
+            }
+            boxListBox.Items.Add(toAdd);
+            clearEntryFields();
+            calcAllButton.Enabled = true;
+            boxListBox.Focus();
+            boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
+        }
+
+        //Loads the text fields for the pallet addition into a Textbox array and returns true if they have a zero
+        private bool loadFromInput(TextBox[] input,int[] numBoxArray)
+        {
+            bool hasZero = false;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (int.TryParse(input[i].Text, out numBoxArray[i])) { }
+                else
+                {
+                    numBoxArray[i] = 0;
+                    hasZero = true;
+                }
+
+                if (numBoxArray[i] == 0) hasZero = true;
+            }
+
+            return hasZero;
+        }
+
+        /***************************
+         * Calculation Buttons and methods
+         * *************************/
+
+        private void calcAllButton_Click(object sender, EventArgs e)
+        {
+            int linearFeet = calcAllLinFeet();
+            int cubicFeet = linearFeet * 64;
+
+            resultTextBox.Text = linearFeet.ToString();
+            cubicFeetResult.Text = cubicFeet.ToString();
+
+            calcFreighClass();
+        }
+
+        //calculates the linear feet of all groups in the listbox
+        private int calcAllLinFeet()
+        {
+            int linFeetTotal = 0;
+            int totalWeight = 0;
+            for (int i = 0; i < boxListBox.Items.Count; i++)
+            {
+                PalletGroup j = getPalletAtIndex(i);
+                linFeetTotal += PalletCalc.calcLinFeet(j, false);
+                totalWeight += j.Weight;
+            }
+            if (linFeetTotal < totalWeight / 1000)
+            {
+                return totalWeight / 1000;
+            }
+            return linFeetTotal;
+        }
 
         //calculates the linear feet of the group selected
         private void calcButton_Click(object sender, EventArgs e)
         {
             PalletGroup calcOnePallet;
             int linearFeet;
-            if (boxListBox.SelectedIndex >= 0)
+            calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
+            linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
+            resultTextBox.Text = linearFeet.ToString();
+            cubicFeetResult.Text = (linearFeet * 64).ToString();
+
+            calcFreighClass();
+        }
+
+        private void calcFreighClass()
+        {
+            PalletGroup current = getPalletAtIndex(boxListBox.SelectedIndex);
+            calcDensityLabel.Text = PalletCalc.calcClass(current);
+        }
+
+        /****************
+         * Delete Pallets
+         * **************/
+
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            deletePalletGroup();
+        }
+
+        //calls to remove selected pallet of Delete key is pressed
+        private void boxListBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
             {
-                calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
-                linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
-                resultTextBox.Text = linearFeet.ToString();
-                cubicFeetResult.Text = (linearFeet * 64).ToString();
-            }
-            else if (boxListBox.Items.Count == 0)
-            {
-                MessageBox.Show("Please add an item to the box to calculate");
-            }
-            else
-            {
-                MessageBox.Show("Please select a pallet group from the list to calculate");
+                deletePalletGroup();
             }
         }
-        
+
+        //removes the selected box from the ListBox
+        private void deletePalletGroup()
+        {
+            boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
+        }
+
+
 
         //returns a palletgroup object at the given index
         private PalletGroup getPalletAtIndex(int index)
@@ -110,56 +190,10 @@ namespace Linear_Foot_Calculator
             currentPallet = (PalletGroup)boxListBox.Items[index];
 
             return currentPallet;
-            
+
         }
 
-        //returns the linear feet that the calc group takes up rounded up to the nearest integer
-       
 
-        private void deletePalletGroup()
-        {
-            boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
-        }
-
-        private void removeButton_Click(object sender, EventArgs e)
-        {
-            deletePalletGroup();
-        }
-
-        //calculates the linear feet of all groups in the listbox
-        private int calcAllLinFeet()
-        {
-            int linFeetTotal = 0;
-            int totalWeight = 0;
-            for(int i = 0;i < boxListBox.Items.Count; i++)
-            {
-                PalletGroup j = getPalletAtIndex(i);
-                linFeetTotal += PalletCalc.calcLinFeet(j,false);
-                totalWeight += j.Weight;
-            }
-            if(linFeetTotal < totalWeight/1000)
-            {
-                return totalWeight / 1000;
-            }
-            return linFeetTotal;
-        }
-
-        private void calcAllButton_Click(object sender, EventArgs e)
-        {
-            int linearFeet = calcAllLinFeet();
-            int cubicFeet = linearFeet * 64;
-
-            resultTextBox.Text = linearFeet.ToString();
-            cubicFeetResult.Text = cubicFeet.ToString();
-        }
-
-        private void boxListBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                deletePalletGroup();
-            }
-        }
 
         private void clearEntryFields()
         {
@@ -193,103 +227,21 @@ namespace Linear_Foot_Calculator
             if (boxListBox.SelectedIndex >= 0)
             {
                 calcButton.Enabled = true;
-                calcFreighClassButton.Enabled = true;
             }
             else
             {
                 calcButton.Enabled = false;
-                calcFreighClassButton.Enabled = false;
             }
             if( boxListBox.Items.Count == 0)
             {
                 calcAllButton.Enabled = false;
-                calcFreighClassButton.Enabled = false;
             }
         }
-        private string calcClass(PalletGroup current)
-        {
-            double poundsPer = PalletCalc.getPCF(current);
-            if(poundsPer >= 50)
-            {
-                return 50.ToString();
-            }
-            else if(poundsPer <50 && poundsPer >= 35)
-            {
-                return 55.ToString();
-            }
-            else if(poundsPer <35 && poundsPer >= 30)
-            {
-                return 60.ToString();
-            }
-            else if(poundsPer < 30 && poundsPer >=22.5)
-            {
-                return 65.ToString();
-            }
-            else if(poundsPer < 22.5 && poundsPer >= 15)
-            {
-                return 70.ToString();
-            }
-            else if(poundsPer < 15 && poundsPer >= 13.5)
-            {
-                return 77.5.ToString();
-            }
-            else if(poundsPer < 13.5 && poundsPer >= 12)
-            {
-                return 85.ToString();
-            }
-            else if(poundsPer < 12 && poundsPer >= 10.5)
-            {
-                return 92.5.ToString();
-            }
-            else if(poundsPer < 10.5 && poundsPer >= 9)
-            {
-                return 100.ToString();
-            }
-            else if(poundsPer < 9 && poundsPer >= 8)
-            {
-                return 110.ToString();
-            }
-            else if(poundsPer < 8 && poundsPer >= 7)
-            {
-                return 125.ToString();
-            }
-            else if(poundsPer < 7 && poundsPer >= 6)
-            {
-                return 150.ToString();
-            }
-            else if (poundsPer < 6 && poundsPer >= 5)
-            {
-                return 175.ToString();
-            }
-            else if (poundsPer < 5 && poundsPer >= 4)
-            {
-                return 200.ToString();
-            }
-            else if (poundsPer < 4 && poundsPer >= 3)
-            {
-                return 250.ToString();
-            }
-            else if (poundsPer < 3 && poundsPer >= 2)
-            {
-                return 300.ToString();
-            }
-            else if (poundsPer < 2 && poundsPer >= 1)
-            {
-                return 400.ToString();
-            }
-            else 
-            {
-                return 500.ToString();
-            }
+        
 
-        }
-
-        private void calcFreighClassButton_Click(object sender, EventArgs e)
-        {
-            PalletGroup current = getPalletAtIndex(boxListBox.SelectedIndex);
-            calcDensityLabel.Text = calcClass(current);
-
-        }
+        /***************************
+         * Volume Quote Helper Calculations
+         * *************************/
 
         private void linearToCubicEntry(object sender, EventArgs e)
         {
@@ -300,7 +252,7 @@ namespace Linear_Foot_Calculator
                 {
                     input /=12;
                 }
-                cubeOutputLabel.Text = linearToCubicCalc(input).ToString();
+                cubeOutputLabel.Text = PalletCalc.linearToCubicCalc(input).ToString();
             }
             else
             {
@@ -308,10 +260,11 @@ namespace Linear_Foot_Calculator
             }
 
         }
-        private int linearToCubicCalc(int linFeet)
-        {
-            return linFeet * 64;
-        }
+
+        /***********************
+         * Volume Notes Creation
+         * *********************/
+        
 
         private void generateNotesButton_Click(object sender, EventArgs e)
         {
@@ -321,6 +274,9 @@ namespace Linear_Foot_Calculator
             
             Clipboard.SetText(Clipboard.GetText() +"\r\n" + volumeNotes);
         }
+
+        //checks which rate notes are needed and creates the string to load
+        //into the note box
         private string createNotes()
         {
             bool[] ratesNeeded = new bool[] { checkGMS1.Checked, checkGMS2.Checked,
@@ -338,16 +294,25 @@ namespace Linear_Foot_Calculator
                         createNoteString((decimal)(.45 + (i * .2)), accessorial) + "\r\n";
                 }
             }
-            
-            if(decimal.TryParse(gmsxBox.Text,out customPercent) && checkGMSX.Checked)
+
+            if (checkGMSX.Checked)
             {
-                customPercent /= 100;
-                notes += "GMSX: " + createNoteString(customPercent, accessorial);
+                if (decimal.TryParse(gmsxBox.Text, out customPercent))
+                {
+                    customPercent /= 100;
+                    notes += "GMSX: " + createNoteString(customPercent, accessorial);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid percent,no notes created");
+                }
             }
 
             return notes;
+            
         }
 
+        //creates a note string for a single rate and returns the string
         private string createNoteString(decimal percent,decimal accessorial)
         {
             decimal total;
@@ -388,6 +353,8 @@ namespace Linear_Foot_Calculator
             Clipboard.Clear();
         }
 
+        //tokenizes the string, checks if the second to last token is "Total" and returns the total
+        //if the string is empty or the second to last is not "Total" returns -1 to signify not found
         private decimal getClipboardTotal()
         {
             string[] tokenClipBoard = Clipboard.GetText().Split(new String[] { " " }, StringSplitOptions.RemoveEmptyEntries);
@@ -403,5 +370,129 @@ namespace Linear_Foot_Calculator
             }
             return volTotal;
         }
+
+        /*******************************
+         * Spot Quote Notes Creation
+         * *****************************/
+
+        const int MILES_PER_HOUR = 45;
+        private void spotQuoteNoteButton_Click(object sender, EventArgs e)
+        {
+            int termNum;
+            int quoteNum;
+            decimal ltlCost;
+            int transitToTerm;
+            int dedicatedMileage;
+            decimal truckCost = getTruckCost();
+
+            Int32.TryParse(dedicatedTextBox.Text, out termNum);
+            Int32.TryParse(quoteNumTextBox.Text, out quoteNum);
+            Decimal.TryParse(ltlCostTextBox.Text, out ltlCost);
+            Int32.TryParse(transitTimeTextBox.Text, out transitToTerm);
+            Int32.TryParse(mileageTextBox.Text, out dedicatedMileage);
+
+            string spotQuoteNotes = createSpotQuoteNotes(termNum, quoteNum, ltlCost, transitToTerm,
+                                                        dedicatedMileage, truckCost);
+            copyNotes.Text = spotQuoteNotes;
+            Clipboard.SetText(spotQuoteNotes);
+            
+        }
+
+        private void checkIsNum(object sender, EventArgs e)
+        {
+            numsOnly(sender);   
+        }
+
+        private void checkIsNum(object sender, KeyEventArgs e)
+        {
+            numsOnly(sender);
+        }
+
+        private void numsOnly(object sender)
+        {
+            TextBox sentFrom = (TextBox)sender;
+            decimal dummy = 0;
+            if (!Decimal.TryParse(sentFrom.Text, out dummy))
+            {
+                if (sentFrom.Text.Length == 0)
+                {
+                    sentFrom.Text = "";
+                }
+                else
+                {
+                    sentFrom.Text = sentFrom.Text.Remove(sentFrom.Text.Length - 1);
+                }
+            }
+        }
+
+        private decimal getTruckCost()
+        {
+            decimal truckCost = 0;
+            switch (truckSizeComboBox.Text)
+            {
+                case "Cargo Van":
+                    truckCost = 3.00M;
+                    break;
+                case "12ft Truck":
+                    truckCost = 4.00M;
+                    break;
+                case "24ft Truck":
+                    truckCost = 4.50M;
+                    break;
+                case "53ft Truck":
+                    truckCost = 5.25M;
+                    break;
+            }
+            return truckCost;
+
+        }
+
+        private decimal checkTruckMin(decimal truckCost,decimal dedicatedCost)
+        {
+            decimal retValue = dedicatedCost;
+            if(truckCost==3.00M && dedicatedCost< 475.00M){
+                retValue = 475.00M;
+            }
+            if (truckCost == 4.00M && dedicatedCost < 575.00M)
+            {
+                retValue = 575.00M;
+            }
+            if (truckCost == 4.50M && dedicatedCost < 650.00M)
+            {
+                retValue = 650.00M;
+            }
+            if (truckCost == 5.25M && dedicatedCost < 1100.00M)
+            {
+                retValue = 1100.00M;
+            }
+
+            return retValue;
+
+        }
+
+        private string createSpotQuoteNotes(int termNum, int quoteNum, decimal ltlCost, int transitToTerm,
+                                                        int dedicatedMileage, decimal truckCost)
+        {
+            int transitHours = (int)(dedicatedMileage / MILES_PER_HOUR + .3);
+            decimal dedicatedCost = checkTruckMin(truckCost,(dedicatedMileage * truckCost));
+            decimal total = ltlCost + dedicatedCost;
+
+            string notes = "";
+            string ltlAsString = ltlCost.ToString("C");
+            string truckAsString = truckCost.ToString("C");
+            string dedicatedAsString = dedicatedCost.ToString("C");
+            string totalAsString = total.ToString("C");
+
+            notes += "Spot quote ded from " + termNum + "\r\n";
+            notes += "Orig to " + termNum + " " + transitToTerm + " day trans ltl=";
+            notes += ltlAsString + " Q#" + quoteNum + "\r\n";
+            notes += termNum + " to dest " + dedicatedMileage + "mi/" + transitHours + "hr trans @" + truckAsString;
+            notes += "/mi = " + dedicatedAsString + "\r\n";
+            notes += ltlAsString + "LTL + " + dedicatedAsString + "DED = " + totalAsString + " BOA and weather\r\n";
+
+            return notes;
+        }
+
+        
     }
 }

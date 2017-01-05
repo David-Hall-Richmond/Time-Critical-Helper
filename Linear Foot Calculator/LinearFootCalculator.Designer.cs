@@ -32,6 +32,20 @@
             this.quoteNotesClearButton = new System.Windows.Forms.Button();
             this.copyNotes = new System.Windows.Forms.TextBox();
             this.spotQuoteHelperGroup = new System.Windows.Forms.GroupBox();
+            this.dollarSymbolLabel = new System.Windows.Forms.Label();
+            this.mileageTextBox = new System.Windows.Forms.TextBox();
+            this.transitTimeTextBox = new System.Windows.Forms.TextBox();
+            this.ltlCostTextBox = new System.Windows.Forms.TextBox();
+            this.quoteNumTextBox = new System.Windows.Forms.TextBox();
+            this.dedicatedTextBox = new System.Windows.Forms.TextBox();
+            this.spotQuoteNoteButton = new System.Windows.Forms.Button();
+            this.truckSizeLabel = new System.Windows.Forms.Label();
+            this.truckSizeComboBox = new System.Windows.Forms.ComboBox();
+            this.mileageLabel = new System.Windows.Forms.Label();
+            this.transitTimeLabel = new System.Windows.Forms.Label();
+            this.ltlCostLabel = new System.Windows.Forms.Label();
+            this.ltlNumLabel = new System.Windows.Forms.Label();
+            this.dedicatedLabel = new System.Windows.Forms.Label();
             this.linFeetLabel = new System.Windows.Forms.Label();
             this.linFeetBox = new System.Windows.Forms.TextBox();
             this.linInchLabel = new System.Windows.Forms.Label();
@@ -72,14 +86,15 @@
             this.piecesTextBox = new System.Windows.Forms.TextBox();
             this.pieceWeightLabel = new System.Windows.Forms.Label();
             this.weightTextBox = new System.Windows.Forms.TextBox();
-            this.calcFreighClassButton = new System.Windows.Forms.Button();
             this.calcDensityLabel = new System.Windows.Forms.Label();
             this.linearFeetCalcGroup = new System.Windows.Forms.GroupBox();
+            this.freightClassLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.linFeetTab = new System.Windows.Forms.TabPage();
             this.volQuotesTab = new System.Windows.Forms.TabPage();
             this.spotQuoteTab = new System.Windows.Forms.TabPage();
             this.notesOutputGroup.SuspendLayout();
+            this.spotQuoteHelperGroup.SuspendLayout();
             this.laneReviewTotalLabel.SuspendLayout();
             this.linearFeetCalcGroup.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -121,12 +136,154 @@
             // spotQuoteHelperGroup
             // 
             this.spotQuoteHelperGroup.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.spotQuoteHelperGroup.Controls.Add(this.dollarSymbolLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.mileageTextBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.transitTimeTextBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.ltlCostTextBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.quoteNumTextBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.dedicatedTextBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.spotQuoteNoteButton);
+            this.spotQuoteHelperGroup.Controls.Add(this.truckSizeLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.truckSizeComboBox);
+            this.spotQuoteHelperGroup.Controls.Add(this.mileageLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.transitTimeLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.ltlCostLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.ltlNumLabel);
+            this.spotQuoteHelperGroup.Controls.Add(this.dedicatedLabel);
             this.spotQuoteHelperGroup.Location = new System.Drawing.Point(2, 3);
             this.spotQuoteHelperGroup.Name = "spotQuoteHelperGroup";
             this.spotQuoteHelperGroup.Size = new System.Drawing.Size(432, 288);
             this.spotQuoteHelperGroup.TabIndex = 2;
             this.spotQuoteHelperGroup.TabStop = false;
             this.spotQuoteHelperGroup.Text = "Spot Quote Helper";
+            // 
+            // dollarSymbolLabel
+            // 
+            this.dollarSymbolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dollarSymbolLabel.Location = new System.Drawing.Point(126, 78);
+            this.dollarSymbolLabel.Name = "dollarSymbolLabel";
+            this.dollarSymbolLabel.Size = new System.Drawing.Size(13, 23);
+            this.dollarSymbolLabel.TabIndex = 18;
+            this.dollarSymbolLabel.Text = "$";
+            // 
+            // mileageTextBox
+            // 
+            this.mileageTextBox.Location = new System.Drawing.Point(145, 130);
+            this.mileageTextBox.Name = "mileageTextBox";
+            this.mileageTextBox.Size = new System.Drawing.Size(49, 20);
+            this.mileageTextBox.TabIndex = 17;
+            // 
+            // transitTimeTextBox
+            // 
+            this.transitTimeTextBox.Location = new System.Drawing.Point(145, 104);
+            this.transitTimeTextBox.Name = "transitTimeTextBox";
+            this.transitTimeTextBox.Size = new System.Drawing.Size(30, 20);
+            this.transitTimeTextBox.TabIndex = 16;
+            // 
+            // ltlCostTextBox
+            // 
+            this.ltlCostTextBox.Location = new System.Drawing.Point(145, 78);
+            this.ltlCostTextBox.Name = "ltlCostTextBox";
+            this.ltlCostTextBox.Size = new System.Drawing.Size(49, 20);
+            this.ltlCostTextBox.TabIndex = 15;
+            // 
+            // quoteNumTextBox
+            // 
+            this.quoteNumTextBox.Location = new System.Drawing.Point(145, 52);
+            this.quoteNumTextBox.Name = "quoteNumTextBox";
+            this.quoteNumTextBox.Size = new System.Drawing.Size(49, 20);
+            this.quoteNumTextBox.TabIndex = 14;
+            // 
+            // dedicatedTextBox
+            // 
+            this.dedicatedTextBox.Location = new System.Drawing.Point(145, 26);
+            this.dedicatedTextBox.Name = "dedicatedTextBox";
+            this.dedicatedTextBox.Size = new System.Drawing.Size(49, 20);
+            this.dedicatedTextBox.TabIndex = 13;
+            // 
+            // spotQuoteNoteButton
+            // 
+            this.spotQuoteNoteButton.Location = new System.Drawing.Point(193, 208);
+            this.spotQuoteNoteButton.Name = "spotQuoteNoteButton";
+            this.spotQuoteNoteButton.Size = new System.Drawing.Size(101, 23);
+            this.spotQuoteNoteButton.TabIndex = 7;
+            this.spotQuoteNoteButton.Text = "Generate Notes";
+            this.spotQuoteNoteButton.UseVisualStyleBackColor = true;
+            this.spotQuoteNoteButton.Click += new System.EventHandler(this.spotQuoteNoteButton_Click);
+            // 
+            // truckSizeLabel
+            // 
+            this.truckSizeLabel.AutoSize = true;
+            this.truckSizeLabel.Location = new System.Drawing.Point(11, 164);
+            this.truckSizeLabel.Name = "truckSizeLabel";
+            this.truckSizeLabel.Size = new System.Drawing.Size(61, 13);
+            this.truckSizeLabel.TabIndex = 7;
+            this.truckSizeLabel.Text = "Truck Size:";
+            // 
+            // truckSizeComboBox
+            // 
+            this.truckSizeComboBox.AutoCompleteCustomSource.AddRange(new string[] {
+            "Cargo Van",
+            "12ft Truck",
+            "24ft Truck",
+            "53ft Truck"});
+            this.truckSizeComboBox.DisplayMember = "12ft Truck";
+            this.truckSizeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.truckSizeComboBox.FormattingEnabled = true;
+            this.truckSizeComboBox.Items.AddRange(new object[] {
+            "Cargo Van",
+            "12ft Truck",
+            "24ft Truck",
+            "53ft Truck"});
+            this.truckSizeComboBox.Location = new System.Drawing.Point(145, 156);
+            this.truckSizeComboBox.Name = "truckSizeComboBox";
+            this.truckSizeComboBox.Size = new System.Drawing.Size(92, 21);
+            this.truckSizeComboBox.TabIndex = 6;
+            // 
+            // mileageLabel
+            // 
+            this.mileageLabel.AutoSize = true;
+            this.mileageLabel.Location = new System.Drawing.Point(10, 137);
+            this.mileageLabel.Name = "mileageLabel";
+            this.mileageLabel.Size = new System.Drawing.Size(96, 13);
+            this.mileageLabel.TabIndex = 5;
+            this.mileageLabel.Text = "Dedicated Mileage";
+            // 
+            // transitTimeLabel
+            // 
+            this.transitTimeLabel.AutoSize = true;
+            this.transitTimeLabel.Location = new System.Drawing.Point(10, 112);
+            this.transitTimeLabel.Name = "transitTimeLabel";
+            this.transitTimeLabel.Size = new System.Drawing.Size(124, 13);
+            this.transitTimeLabel.TabIndex = 4;
+            this.transitTimeLabel.Text = "Transit Time ToTerminal:";
+            // 
+            // ltlCostLabel
+            // 
+            this.ltlCostLabel.AutoSize = true;
+            this.ltlCostLabel.Location = new System.Drawing.Point(11, 85);
+            this.ltlCostLabel.Name = "ltlCostLabel";
+            this.ltlCostLabel.Size = new System.Drawing.Size(53, 13);
+            this.ltlCostLabel.TabIndex = 3;
+            this.ltlCostLabel.Text = "LTL Cost:";
+            // 
+            // ltlNumLabel
+            // 
+            this.ltlNumLabel.AutoSize = true;
+            this.ltlNumLabel.Location = new System.Drawing.Point(11, 59);
+            this.ltlNumLabel.Name = "ltlNumLabel";
+            this.ltlNumLabel.Size = new System.Drawing.Size(101, 13);
+            this.ltlNumLabel.TabIndex = 2;
+            this.ltlNumLabel.Text = "LTL Quote Number:";
+            // 
+            // dedicatedLabel
+            // 
+            this.dedicatedLabel.AutoSize = true;
+            this.dedicatedLabel.Location = new System.Drawing.Point(11, 33);
+            this.dedicatedLabel.Name = "dedicatedLabel";
+            this.dedicatedLabel.Size = new System.Drawing.Size(128, 13);
+            this.dedicatedLabel.TabIndex = 0;
+            this.dedicatedLabel.Text = "Terminal Dedicated From:";
             // 
             // linFeetLabel
             // 
@@ -521,29 +678,19 @@
             this.weightTextBox.Size = new System.Drawing.Size(38, 20);
             this.weightTextBox.TabIndex = 4;
             // 
-            // calcFreighClassButton
-            // 
-            this.calcFreighClassButton.Location = new System.Drawing.Point(26, 254);
-            this.calcFreighClassButton.Name = "calcFreighClassButton";
-            this.calcFreighClassButton.Size = new System.Drawing.Size(140, 23);
-            this.calcFreighClassButton.TabIndex = 20;
-            this.calcFreighClassButton.Text = "Calculate Class by Density";
-            this.calcFreighClassButton.UseVisualStyleBackColor = true;
-            this.calcFreighClassButton.Click += new System.EventHandler(this.calcFreighClassButton_Click);
-            // 
             // calcDensityLabel
             // 
             this.calcDensityLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.calcDensityLabel.Location = new System.Drawing.Point(187, 254);
+            this.calcDensityLabel.Location = new System.Drawing.Point(325, 92);
             this.calcDensityLabel.Name = "calcDensityLabel";
             this.calcDensityLabel.Size = new System.Drawing.Size(37, 23);
             this.calcDensityLabel.TabIndex = 21;
             // 
             // linearFeetCalcGroup
             // 
-            this.linearFeetCalcGroup.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.linearFeetCalcGroup.BackColor = System.Drawing.Color.Gainsboro;
+            this.linearFeetCalcGroup.Controls.Add(this.freightClassLabel);
             this.linearFeetCalcGroup.Controls.Add(this.calcDensityLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.calcFreighClassButton);
             this.linearFeetCalcGroup.Controls.Add(this.weightTextBox);
             this.linearFeetCalcGroup.Controls.Add(this.pieceWeightLabel);
             this.linearFeetCalcGroup.Controls.Add(this.piecesTextBox);
@@ -571,6 +718,15 @@
             this.linearFeetCalcGroup.TabIndex = 0;
             this.linearFeetCalcGroup.TabStop = false;
             this.linearFeetCalcGroup.Text = "Linear Feet";
+            // 
+            // freightClassLabel
+            // 
+            this.freightClassLabel.AutoSize = true;
+            this.freightClassLabel.Location = new System.Drawing.Point(232, 102);
+            this.freightClassLabel.Name = "freightClassLabel";
+            this.freightClassLabel.Size = new System.Drawing.Size(67, 13);
+            this.freightClassLabel.TabIndex = 22;
+            this.freightClassLabel.Text = "Freight Class";
             // 
             // tabControl1
             // 
@@ -621,6 +777,7 @@
             this.AcceptButton = this.addButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(908, 341);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.notesOutputGroup);
@@ -629,6 +786,8 @@
             this.Text = "Time Critical Helper";
             this.notesOutputGroup.ResumeLayout(false);
             this.notesOutputGroup.PerformLayout();
+            this.spotQuoteHelperGroup.ResumeLayout(false);
+            this.spotQuoteHelperGroup.PerformLayout();
             this.laneReviewTotalLabel.ResumeLayout(false);
             this.laneReviewTotalLabel.PerformLayout();
             this.linearFeetCalcGroup.ResumeLayout(false);
@@ -685,7 +844,6 @@
         private System.Windows.Forms.TextBox piecesTextBox;
         private System.Windows.Forms.Label pieceWeightLabel;
         private System.Windows.Forms.TextBox weightTextBox;
-        private System.Windows.Forms.Button calcFreighClassButton;
         private System.Windows.Forms.Label calcDensityLabel;
         private System.Windows.Forms.GroupBox linearFeetCalcGroup;
         private System.Windows.Forms.TabControl tabControl1;
@@ -693,6 +851,21 @@
         private System.Windows.Forms.TabPage volQuotesTab;
         private System.Windows.Forms.TabPage spotQuoteTab;
         private System.Windows.Forms.Button quoteNotesClearButton;
+        private System.Windows.Forms.Label freightClassLabel;
+        private System.Windows.Forms.Label mileageLabel;
+        private System.Windows.Forms.Label transitTimeLabel;
+        private System.Windows.Forms.Label ltlCostLabel;
+        private System.Windows.Forms.Label ltlNumLabel;
+        private System.Windows.Forms.Label dedicatedLabel;
+        private System.Windows.Forms.Label truckSizeLabel;
+        private System.Windows.Forms.ComboBox truckSizeComboBox;
+        private System.Windows.Forms.Button spotQuoteNoteButton;
+        private System.Windows.Forms.Label dollarSymbolLabel;
+        private System.Windows.Forms.TextBox mileageTextBox;
+        private System.Windows.Forms.TextBox transitTimeTextBox;
+        private System.Windows.Forms.TextBox ltlCostTextBox;
+        private System.Windows.Forms.TextBox quoteNumTextBox;
+        private System.Windows.Forms.TextBox dedicatedTextBox;
     }
 }
 

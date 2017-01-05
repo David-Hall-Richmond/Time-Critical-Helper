@@ -88,11 +88,17 @@ namespace Linear_Foot_Calculator
                 {
                     needsSwap = true;
                 }
+                else if(PalletCalc.calcLinFeet(swappedPallet, false) < PalletCalc.calcLinFeet(this, false))
+                {
+                    needsSwap = true;
+                }
             }
-            if (needsSwap || PalletCalc.calcLinFeet(swappedPallet,false) < PalletCalc.calcLinFeet(this,false))
+            if (needsSwap)
             {
                 this.SwapDims();
             }
         }
+
+        
     }
 }
