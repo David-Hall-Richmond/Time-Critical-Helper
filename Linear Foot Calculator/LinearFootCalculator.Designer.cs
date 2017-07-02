@@ -29,9 +29,20 @@
         private void InitializeComponent()
         {
             this.notesOutputGroup = new System.Windows.Forms.GroupBox();
+            this.copyToClipboardButton = new System.Windows.Forms.Button();
             this.quoteNotesClearButton = new System.Windows.Forms.Button();
             this.copyNotes = new System.Windows.Forms.TextBox();
             this.spotQuoteHelperGroup = new System.Windows.Forms.GroupBox();
+            this.volAccesGroup = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pickAccessText = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.upgradeCheck = new System.Windows.Forms.CheckBox();
+            this.hazCheck = new System.Windows.Forms.CheckBox();
+            this.newYorkDelCheck = new System.Windows.Forms.CheckBox();
+            this.insideDelCheck = new System.Windows.Forms.CheckBox();
+            this.liftGateCheck = new System.Windows.Forms.CheckBox();
+            this.spotQuoteResetButton = new System.Windows.Forms.Button();
             this.dollarSymbolLabel = new System.Windows.Forms.Label();
             this.mileageTextBox = new System.Windows.Forms.TextBox();
             this.transitTimeTextBox = new System.Windows.Forms.TextBox();
@@ -95,6 +106,7 @@
             this.spotQuoteTab = new System.Windows.Forms.TabPage();
             this.notesOutputGroup.SuspendLayout();
             this.spotQuoteHelperGroup.SuspendLayout();
+            this.volAccesGroup.SuspendLayout();
             this.laneReviewTotalLabel.SuspendLayout();
             this.linearFeetCalcGroup.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -105,6 +117,7 @@
             // 
             // notesOutputGroup
             // 
+            this.notesOutputGroup.Controls.Add(this.copyToClipboardButton);
             this.notesOutputGroup.Controls.Add(this.quoteNotesClearButton);
             this.notesOutputGroup.Controls.Add(this.copyNotes);
             this.notesOutputGroup.Location = new System.Drawing.Point(447, 34);
@@ -114,9 +127,19 @@
             this.notesOutputGroup.TabStop = false;
             this.notesOutputGroup.Text = "Quote Notes Output";
             // 
+            // copyToClipboardButton
+            // 
+            this.copyToClipboardButton.Location = new System.Drawing.Point(223, 259);
+            this.copyToClipboardButton.Name = "copyToClipboardButton";
+            this.copyToClipboardButton.Size = new System.Drawing.Size(129, 23);
+            this.copyToClipboardButton.TabIndex = 2;
+            this.copyToClipboardButton.Text = "Copy notes to Clipboard";
+            this.copyToClipboardButton.UseVisualStyleBackColor = true;
+            this.copyToClipboardButton.Click += new System.EventHandler(this.copyToClipboardButton_Click);
+            // 
             // quoteNotesClearButton
             // 
-            this.quoteNotesClearButton.Location = new System.Drawing.Point(203, 260);
+            this.quoteNotesClearButton.Location = new System.Drawing.Point(122, 259);
             this.quoteNotesClearButton.Name = "quoteNotesClearButton";
             this.quoteNotesClearButton.Size = new System.Drawing.Size(75, 23);
             this.quoteNotesClearButton.TabIndex = 1;
@@ -136,6 +159,8 @@
             // spotQuoteHelperGroup
             // 
             this.spotQuoteHelperGroup.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.spotQuoteHelperGroup.Controls.Add(this.volAccesGroup);
+            this.spotQuoteHelperGroup.Controls.Add(this.spotQuoteResetButton);
             this.spotQuoteHelperGroup.Controls.Add(this.dollarSymbolLabel);
             this.spotQuoteHelperGroup.Controls.Add(this.mileageTextBox);
             this.spotQuoteHelperGroup.Controls.Add(this.transitTimeTextBox);
@@ -157,6 +182,107 @@
             this.spotQuoteHelperGroup.TabStop = false;
             this.spotQuoteHelperGroup.Text = "Spot Quote Helper";
             // 
+            // volAccesGroup
+            // 
+            this.volAccesGroup.Controls.Add(this.label3);
+            this.volAccesGroup.Controls.Add(this.pickAccessText);
+            this.volAccesGroup.Controls.Add(this.label2);
+            this.volAccesGroup.Controls.Add(this.upgradeCheck);
+            this.volAccesGroup.Controls.Add(this.hazCheck);
+            this.volAccesGroup.Controls.Add(this.newYorkDelCheck);
+            this.volAccesGroup.Controls.Add(this.insideDelCheck);
+            this.volAccesGroup.Controls.Add(this.liftGateCheck);
+            this.volAccesGroup.Location = new System.Drawing.Point(254, 28);
+            this.volAccesGroup.Name = "volAccesGroup";
+            this.volAccesGroup.Size = new System.Drawing.Size(158, 250);
+            this.volAccesGroup.TabIndex = 20;
+            this.volAccesGroup.TabStop = false;
+            this.volAccesGroup.Text = "Accessorials";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(4, 162);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(18, 23);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "$";
+            // 
+            // pickAccessText
+            // 
+            this.pickAccessText.Location = new System.Drawing.Point(28, 162);
+            this.pickAccessText.Name = "pickAccessText";
+            this.pickAccessText.Size = new System.Drawing.Size(47, 20);
+            this.pickAccessText.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(6, 136);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(145, 23);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Accessorial Total for Pick Up";
+            // 
+            // upgradeCheck
+            // 
+            this.upgradeCheck.AutoSize = true;
+            this.upgradeCheck.Location = new System.Drawing.Point(7, 104);
+            this.upgradeCheck.Name = "upgradeCheck";
+            this.upgradeCheck.Size = new System.Drawing.Size(152, 17);
+            this.upgradeCheck.TabIndex = 4;
+            this.upgradeCheck.Text = "Upgrade Std to GMS ($75)";
+            this.upgradeCheck.UseVisualStyleBackColor = true;
+            // 
+            // hazCheck
+            // 
+            this.hazCheck.AutoSize = true;
+            this.hazCheck.Location = new System.Drawing.Point(6, 84);
+            this.hazCheck.Name = "hazCheck";
+            this.hazCheck.Size = new System.Drawing.Size(116, 17);
+            this.hazCheck.TabIndex = 3;
+            this.hazCheck.Text = "Hazmat Fee ($300)";
+            this.hazCheck.UseVisualStyleBackColor = true;
+            // 
+            // newYorkDelCheck
+            // 
+            this.newYorkDelCheck.AutoSize = true;
+            this.newYorkDelCheck.Location = new System.Drawing.Point(6, 65);
+            this.newYorkDelCheck.Name = "newYorkDelCheck";
+            this.newYorkDelCheck.Size = new System.Drawing.Size(152, 17);
+            this.newYorkDelCheck.TabIndex = 2;
+            this.newYorkDelCheck.Text = "NY/Long Island Fee($300)";
+            this.newYorkDelCheck.UseVisualStyleBackColor = true;
+            // 
+            // insideDelCheck
+            // 
+            this.insideDelCheck.AutoSize = true;
+            this.insideDelCheck.Location = new System.Drawing.Point(6, 42);
+            this.insideDelCheck.Name = "insideDelCheck";
+            this.insideDelCheck.Size = new System.Drawing.Size(128, 17);
+            this.insideDelCheck.TabIndex = 1;
+            this.insideDelCheck.Text = "Inside Delivery ($225)";
+            this.insideDelCheck.UseVisualStyleBackColor = true;
+            // 
+            // liftGateCheck
+            // 
+            this.liftGateCheck.AutoSize = true;
+            this.liftGateCheck.Location = new System.Drawing.Point(6, 18);
+            this.liftGateCheck.Name = "liftGateCheck";
+            this.liftGateCheck.Size = new System.Drawing.Size(99, 17);
+            this.liftGateCheck.TabIndex = 0;
+            this.liftGateCheck.Text = "Lift Gate ($225)";
+            this.liftGateCheck.UseVisualStyleBackColor = true;
+            // 
+            // spotQuoteResetButton
+            // 
+            this.spotQuoteResetButton.Location = new System.Drawing.Point(162, 207);
+            this.spotQuoteResetButton.Name = "spotQuoteResetButton";
+            this.spotQuoteResetButton.Size = new System.Drawing.Size(75, 23);
+            this.spotQuoteResetButton.TabIndex = 19;
+            this.spotQuoteResetButton.Text = "Reset";
+            this.spotQuoteResetButton.UseVisualStyleBackColor = true;
+            this.spotQuoteResetButton.Click += new System.EventHandler(this.spotQuoteResetButton_Click);
+            // 
             // dollarSymbolLabel
             // 
             this.dollarSymbolLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -172,6 +298,8 @@
             this.mileageTextBox.Name = "mileageTextBox";
             this.mileageTextBox.Size = new System.Drawing.Size(49, 20);
             this.mileageTextBox.TabIndex = 17;
+            this.mileageTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
+            this.mileageTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
             // transitTimeTextBox
             // 
@@ -179,6 +307,8 @@
             this.transitTimeTextBox.Name = "transitTimeTextBox";
             this.transitTimeTextBox.Size = new System.Drawing.Size(30, 20);
             this.transitTimeTextBox.TabIndex = 16;
+            this.transitTimeTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
+            this.transitTimeTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
             // ltlCostTextBox
             // 
@@ -186,6 +316,8 @@
             this.ltlCostTextBox.Name = "ltlCostTextBox";
             this.ltlCostTextBox.Size = new System.Drawing.Size(49, 20);
             this.ltlCostTextBox.TabIndex = 15;
+            this.ltlCostTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
+            this.ltlCostTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
             // quoteNumTextBox
             // 
@@ -193,6 +325,8 @@
             this.quoteNumTextBox.Name = "quoteNumTextBox";
             this.quoteNumTextBox.Size = new System.Drawing.Size(49, 20);
             this.quoteNumTextBox.TabIndex = 14;
+            this.quoteNumTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
+            this.quoteNumTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
             // dedicatedTextBox
             // 
@@ -200,10 +334,12 @@
             this.dedicatedTextBox.Name = "dedicatedTextBox";
             this.dedicatedTextBox.Size = new System.Drawing.Size(49, 20);
             this.dedicatedTextBox.TabIndex = 13;
+            this.dedicatedTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
+            this.dedicatedTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
             // spotQuoteNoteButton
             // 
-            this.spotQuoteNoteButton.Location = new System.Drawing.Point(193, 208);
+            this.spotQuoteNoteButton.Location = new System.Drawing.Point(33, 207);
             this.spotQuoteNoteButton.Name = "spotQuoteNoteButton";
             this.spotQuoteNoteButton.Size = new System.Drawing.Size(101, 23);
             this.spotQuoteNoteButton.TabIndex = 7;
@@ -254,9 +390,9 @@
             this.transitTimeLabel.AutoSize = true;
             this.transitTimeLabel.Location = new System.Drawing.Point(10, 112);
             this.transitTimeLabel.Name = "transitTimeLabel";
-            this.transitTimeLabel.Size = new System.Drawing.Size(124, 13);
+            this.transitTimeLabel.Size = new System.Drawing.Size(112, 13);
             this.transitTimeLabel.TabIndex = 4;
-            this.transitTimeLabel.Text = "Transit Time ToTerminal:";
+            this.transitTimeLabel.Text = "LTL Days ToTerminal:";
             // 
             // ltlCostLabel
             // 
@@ -788,6 +924,8 @@
             this.notesOutputGroup.PerformLayout();
             this.spotQuoteHelperGroup.ResumeLayout(false);
             this.spotQuoteHelperGroup.PerformLayout();
+            this.volAccesGroup.ResumeLayout(false);
+            this.volAccesGroup.PerformLayout();
             this.laneReviewTotalLabel.ResumeLayout(false);
             this.laneReviewTotalLabel.PerformLayout();
             this.linearFeetCalcGroup.ResumeLayout(false);
@@ -866,6 +1004,17 @@
         private System.Windows.Forms.TextBox ltlCostTextBox;
         private System.Windows.Forms.TextBox quoteNumTextBox;
         private System.Windows.Forms.TextBox dedicatedTextBox;
+        private System.Windows.Forms.Button spotQuoteResetButton;
+        private System.Windows.Forms.Button copyToClipboardButton;
+        private System.Windows.Forms.GroupBox volAccesGroup;
+        private System.Windows.Forms.TextBox pickAccessText;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox upgradeCheck;
+        private System.Windows.Forms.CheckBox hazCheck;
+        private System.Windows.Forms.CheckBox newYorkDelCheck;
+        private System.Windows.Forms.CheckBox insideDelCheck;
+        private System.Windows.Forms.CheckBox liftGateCheck;
+        private System.Windows.Forms.Label label3;
     }
 }
 

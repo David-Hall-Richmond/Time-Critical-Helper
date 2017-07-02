@@ -1,0 +1,63 @@
+Data Structures:
+1) bin: locations where boxes can be added
+	length
+	width
+	coords
+2) pallet:currently a 2 dimensional object to be placed in a bin, weight and height are not considered
+	length
+	width
+	coords
+3) bin_list: a current running list of available bins to place pallet, recalculated after every placement
+	implemented using an arraylist
+4) pallet_to_place: list of pallets that have not been placed
+	implemented using an arraylist
+5) pallets_placed: list of pallets that need to be placed
+6) truck: container for lists and keeps track of where to place new bin
+7) coords:
+	x and y
+
+
+
+Algorithm:
+
+-Sort boxlist
+-function packPallets(bin, palletlist)
+	if(boxlist.length==0);
+	count==0; 
+	while(palletList.length > 0 and count<palletList.length)
+		count=0;
+		if(box[count].fits) 
+			packPallets(placePallet(bin,palletList&,index),palletList&)//placePallet returns a new calculated bin
+			
+		else if(!done and fits with swapped dims)
+			swap dims
+			packPallets(placePallet(bin.coords,palletList&,index),palletList&)
+		count++
+
+//if the list has been run through and no pallets fit anymore on that row, check if pallets are left
+//if there are pallets left but there is more room on truck, call again with a new bin set at next linear feet
+//if there are pallets left and the x-coordinate of the current bin=0 that means the list ran through with a brand new
+//bin and still couldn't fit, which means all freight will not fit on truck
+	if(palletList.length>0)
+		if(bin.coords.x==0)
+			return false
+		packPallets(truck.makeNewBin(),palletList)
+	return true;
+//if while loops runs out
+
+-function placePallet(bin,palletList,index)
+	pallet toPlace=palletList[index]	
+	toPlace.coords=bin.coords
+	palletList.remove(index)
+	placedPallets.add(toPlace)
+	if(bin.coords.x==0)
+		bin.height=toPlace.height
+		truck.linearInches+=bin.height
+	bin.coords.x+=toPlace.width
+	bin.width-=toPlace.width
+	return bin;
+
+-function makeNewBin()
+	Bin newBin=new Bin(0,truck.linearInches,96,truck.WHOLE_TRUCK_INCHES-truck.linearInches)
+
+	

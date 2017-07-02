@@ -268,11 +268,9 @@ namespace Linear_Foot_Calculator
 
         private void generateNotesButton_Click(object sender, EventArgs e)
         {
-            string volumeNotes = createNotes();
-            copyNotes.Text = volumeNotes;
-            
-            
-            Clipboard.SetText(Clipboard.GetText() +"\r\n" + volumeNotes);
+            string notes = createNotes();
+            Clipboard.SetText(notes);
+            copyNotes.Text = notes;
         }
 
         //checks which rate notes are needed and creates the string to load
@@ -285,6 +283,10 @@ namespace Linear_Foot_Calculator
             decimal accessorial = 0;
             decimal customPercent;
 
+            if (getClipboardTotal() != -1)
+            {
+                notes += Clipboard.GetText()+"\r\n";
+            }
             if (decimal.TryParse(accessorialBox.Text, out accessorial)) { }
 
             for (int i = 0; i < 3; i++) {
@@ -330,7 +332,7 @@ namespace Linear_Foot_Calculator
             }
             
                 upcharge = total * percent;
-                rate = (decimal)(total + upcharge);
+                rate = (decimal)(total + upcharge+ accessorial);
                 noteString += total.ToString("C") + " total + " + upcharge.ToString("C") + "(" + percentAsString + ")";
                 if(accessorial > 0)
                 {
@@ -351,6 +353,11 @@ namespace Linear_Foot_Calculator
         {
             copyNotes.Text = "";
             Clipboard.Clear();
+        }
+
+        private void copyToClipboardButton_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(copyNotes.Text);
         }
 
         //tokenizes the string, checks if the second to last token is "Total" and returns the total
@@ -378,21 +385,20 @@ namespace Linear_Foot_Calculator
         const int MILES_PER_HOUR = 45;
         private void spotQuoteNoteButton_Click(object sender, EventArgs e)
         {
-            int termNum;
-            int quoteNum;
+            string termNum = dedicatedTextBox.Text;
+            string quoteNum = quoteNumTextBox.Text;
             decimal ltlCost;
             int transitToTerm;
             int dedicatedMileage;
             decimal truckCost = getTruckCost();
+            decimal accessorialCost = getAccesorialCost();
 
-            Int32.TryParse(dedicatedTextBox.Text, out termNum);
-            Int32.TryParse(quoteNumTextBox.Text, out quoteNum);
             Decimal.TryParse(ltlCostTextBox.Text, out ltlCost);
             Int32.TryParse(transitTimeTextBox.Text, out transitToTerm);
             Int32.TryParse(mileageTextBox.Text, out dedicatedMileage);
 
             string spotQuoteNotes = createSpotQuoteNotes(termNum, quoteNum, ltlCost, transitToTerm,
-                                                        dedicatedMileage, truckCost);
+                                                        dedicatedMileage, truckCost,accessorialCost);
             copyNotes.Text = spotQuoteNotes;
             Clipboard.SetText(spotQuoteNotes);
             
@@ -423,6 +429,29 @@ namespace Linear_Foot_Calculator
                     sentFrom.Text = sentFrom.Text.Remove(sentFrom.Text.Length - 1);
                 }
             }
+        }
+
+        private decimal getAccesorialCost()
+        {
+            Tuple<CheckBox, decimal>[] dedAccess =
+           {
+                new Tuple<CheckBox,decimal>(liftGateCheck,225M),
+                new Tuple<CheckBox,decimal>(insideDelCheck,225M),
+                new Tuple<CheckBox,decimal>(newYorkDelCheck,300M),
+                new Tuple<CheckBox,decimal>(hazCheck,300M),
+                new Tuple<CheckBox,decimal>(upgradeCheck,75M),
+           };
+            decimal total = 0M;
+            for(int i=0; i<5;i++)
+            {
+                if (dedAccess[i].Item1.Checked)
+                    total+= dedAccess[i].Item2;
+            }
+
+            decimal pickupAccess;
+            Decimal.TryParse(pickAccessText.Text, out pickupAccess);
+            total += pickupAccess;
+            return total;
         }
 
         private decimal getTruckCost()
@@ -470,17 +499,19 @@ namespace Linear_Foot_Calculator
 
         }
 
-        private string createSpotQuoteNotes(int termNum, int quoteNum, decimal ltlCost, int transitToTerm,
-                                                        int dedicatedMileage, decimal truckCost)
+        private string createSpotQuoteNotes(string termNum, string quoteNum, decimal ltlCost, int transitToTerm,
+                                                        int dedicatedMileage, decimal truckCost,decimal accessorialCost)
         {
-            int transitHours = (int)(dedicatedMileage / MILES_PER_HOUR + .3);
+            //calculate transit hours based on mileage/45 + 2 hours for every 1000 miles, starting at mile 1
+            int transitHours = (int)(dedicatedMileage / MILES_PER_HOUR + .3)+2+((dedicatedMileage/1000)*2);
             decimal dedicatedCost = checkTruckMin(truckCost,(dedicatedMileage * truckCost));
-            decimal total = ltlCost + dedicatedCost;
+            decimal total = ltlCost + dedicatedCost + accessorialCost;
 
             string notes = "";
             string ltlAsString = ltlCost.ToString("C");
             string truckAsString = truckCost.ToString("C");
             string dedicatedAsString = dedicatedCost.ToString("C");
+            string accessorialAsString = accessorialCost.ToString("C");
             string totalAsString = total.ToString("C");
 
             notes += "Spot quote ded from " + termNum + "\r\n";
@@ -488,11 +519,23 @@ namespace Linear_Foot_Calculator
             notes += ltlAsString + " Q#" + quoteNum + "\r\n";
             notes += termNum + " to dest " + dedicatedMileage + "mi/" + transitHours + "hr trans @" + truckAsString;
             notes += "/mi = " + dedicatedAsString + "\r\n";
-            notes += ltlAsString + "LTL + " + dedicatedAsString + "DED = " + totalAsString + " BOA and weather\r\n";
+            notes += ltlAsString + "LTL + " + dedicatedAsString + "DED ";
+            if(accessorialCost>0)
+                notes+= " + " + accessorialAsString + "ACCESS \r\n";
+            notes += totalAsString + "\r\nBOA and weather\r\n";
+            
 
             return notes;
         }
 
-        
+        private void spotQuoteResetButton_Click(object sender, EventArgs e)
+        {
+            dedicatedTextBox.Text = "";
+            quoteNumTextBox.Text = "";
+            ltlCostTextBox.Text = "";
+            transitTimeTextBox.Text = "";
+            mileageTextBox.Text = "";
+            truckSizeComboBox.SelectedItem = "12ft Truck";
+        }
     }
 }
