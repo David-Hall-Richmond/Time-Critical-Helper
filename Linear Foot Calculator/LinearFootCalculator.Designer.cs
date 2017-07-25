@@ -57,12 +57,6 @@
             this.ltlCostLabel = new System.Windows.Forms.Label();
             this.ltlNumLabel = new System.Windows.Forms.Label();
             this.dedicatedLabel = new System.Windows.Forms.Label();
-            this.linFeetLabel = new System.Windows.Forms.Label();
-            this.linFeetBox = new System.Windows.Forms.TextBox();
-            this.linInchLabel = new System.Windows.Forms.Label();
-            this.linInchBox = new System.Windows.Forms.TextBox();
-            this.cubeFeetBox = new System.Windows.Forms.Label();
-            this.cubeOutputLabel = new System.Windows.Forms.Label();
             this.rateSelectLabel = new System.Windows.Forms.Label();
             this.checkGMS1 = new System.Windows.Forms.CheckBox();
             this.checkGMS2 = new System.Windows.Forms.CheckBox();
@@ -76,24 +70,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.laneReviewTotalBox = new System.Windows.Forms.TextBox();
             this.laneReviewTotalLabel = new System.Windows.Forms.GroupBox();
-            this.addButton = new System.Windows.Forms.Button();
             this.heightTextBox = new System.Windows.Forms.TextBox();
-            this.removeButton = new System.Windows.Forms.Button();
             this.heightLabel = new System.Windows.Forms.Label();
-            this.resetButton = new System.Windows.Forms.Button();
-            this.boxListBox = new System.Windows.Forms.ListBox();
             this.widthTextBox = new System.Windows.Forms.TextBox();
-            this.stackCheckBox = new System.Windows.Forms.CheckBox();
             this.widthLabel = new System.Windows.Forms.Label();
             this.calcButton = new System.Windows.Forms.Button();
             this.lengthTextBox = new System.Windows.Forms.TextBox();
-            this.calcAllButton = new System.Windows.Forms.Button();
-            this.resultTextBox = new System.Windows.Forms.Label();
-            this.linearFeetLabel = new System.Windows.Forms.Label();
             this.lengthLabel = new System.Windows.Forms.Label();
-            this.cubicFeetLabel = new System.Windows.Forms.Label();
             this.numPiecesLabel = new System.Windows.Forms.Label();
-            this.cubicFeetResult = new System.Windows.Forms.Label();
             this.piecesTextBox = new System.Windows.Forms.TextBox();
             this.pieceWeightLabel = new System.Windows.Forms.Label();
             this.weightTextBox = new System.Windows.Forms.TextBox();
@@ -421,63 +405,10 @@
             this.dedicatedLabel.TabIndex = 0;
             this.dedicatedLabel.Text = "Terminal Dedicated From:";
             // 
-            // linFeetLabel
-            // 
-            this.linFeetLabel.AutoSize = true;
-            this.linFeetLabel.Location = new System.Drawing.Point(21, 43);
-            this.linFeetLabel.Name = "linFeetLabel";
-            this.linFeetLabel.Size = new System.Drawing.Size(60, 13);
-            this.linFeetLabel.TabIndex = 0;
-            this.linFeetLabel.Text = "Linear Feet";
-            // 
-            // linFeetBox
-            // 
-            this.linFeetBox.Location = new System.Drawing.Point(116, 36);
-            this.linFeetBox.Name = "linFeetBox";
-            this.linFeetBox.Size = new System.Drawing.Size(34, 20);
-            this.linFeetBox.TabIndex = 1;
-            this.linFeetBox.ModifiedChanged += new System.EventHandler(this.linearToCubicEntry);
-            this.linFeetBox.TextChanged += new System.EventHandler(this.linearToCubicEntry);
-            this.linFeetBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.linearToCubicEntry);
-            // 
-            // linInchLabel
-            // 
-            this.linInchLabel.AutoSize = true;
-            this.linInchLabel.Location = new System.Drawing.Point(21, 62);
-            this.linInchLabel.Name = "linInchLabel";
-            this.linInchLabel.Size = new System.Drawing.Size(71, 13);
-            this.linInchLabel.TabIndex = 2;
-            this.linInchLabel.Text = "Linear Inches";
-            // 
-            // linInchBox
-            // 
-            this.linInchBox.Location = new System.Drawing.Point(116, 59);
-            this.linInchBox.Name = "linInchBox";
-            this.linInchBox.Size = new System.Drawing.Size(34, 20);
-            this.linInchBox.TabIndex = 3;
-            this.linInchBox.TextChanged += new System.EventHandler(this.linearToCubicEntry);
-            // 
-            // cubeFeetBox
-            // 
-            this.cubeFeetBox.AutoSize = true;
-            this.cubeFeetBox.Location = new System.Drawing.Point(175, 44);
-            this.cubeFeetBox.Name = "cubeFeetBox";
-            this.cubeFeetBox.Size = new System.Drawing.Size(58, 13);
-            this.cubeFeetBox.TabIndex = 4;
-            this.cubeFeetBox.Text = "Cubic Feet";
-            // 
-            // cubeOutputLabel
-            // 
-            this.cubeOutputLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cubeOutputLabel.Location = new System.Drawing.Point(239, 34);
-            this.cubeOutputLabel.Name = "cubeOutputLabel";
-            this.cubeOutputLabel.Size = new System.Drawing.Size(51, 23);
-            this.cubeOutputLabel.TabIndex = 5;
-            // 
             // rateSelectLabel
             // 
             this.rateSelectLabel.AutoSize = true;
-            this.rateSelectLabel.Location = new System.Drawing.Point(24, 107);
+            this.rateSelectLabel.Location = new System.Drawing.Point(24, 29);
             this.rateSelectLabel.Name = "rateSelectLabel";
             this.rateSelectLabel.Size = new System.Drawing.Size(79, 13);
             this.rateSelectLabel.TabIndex = 6;
@@ -486,7 +417,7 @@
             // checkGMS1
             // 
             this.checkGMS1.AutoSize = true;
-            this.checkGMS1.Location = new System.Drawing.Point(27, 127);
+            this.checkGMS1.Location = new System.Drawing.Point(27, 49);
             this.checkGMS1.Name = "checkGMS1";
             this.checkGMS1.Size = new System.Drawing.Size(60, 17);
             this.checkGMS1.TabIndex = 7;
@@ -496,7 +427,7 @@
             // checkGMS2
             // 
             this.checkGMS2.AutoSize = true;
-            this.checkGMS2.Location = new System.Drawing.Point(27, 147);
+            this.checkGMS2.Location = new System.Drawing.Point(27, 72);
             this.checkGMS2.Name = "checkGMS2";
             this.checkGMS2.Size = new System.Drawing.Size(66, 17);
             this.checkGMS2.TabIndex = 8;
@@ -506,7 +437,7 @@
             // checkGMS3
             // 
             this.checkGMS3.AutoSize = true;
-            this.checkGMS3.Location = new System.Drawing.Point(27, 171);
+            this.checkGMS3.Location = new System.Drawing.Point(27, 95);
             this.checkGMS3.Name = "checkGMS3";
             this.checkGMS3.Size = new System.Drawing.Size(66, 17);
             this.checkGMS3.TabIndex = 9;
@@ -516,7 +447,7 @@
             // checkGMSX
             // 
             this.checkGMSX.AutoSize = true;
-            this.checkGMSX.Location = new System.Drawing.Point(27, 195);
+            this.checkGMSX.Location = new System.Drawing.Point(27, 118);
             this.checkGMSX.Name = "checkGMSX";
             this.checkGMSX.Size = new System.Drawing.Size(87, 17);
             this.checkGMSX.TabIndex = 10;
@@ -526,7 +457,7 @@
             // 
             // gmsxBox
             // 
-            this.gmsxBox.Location = new System.Drawing.Point(178, 190);
+            this.gmsxBox.Location = new System.Drawing.Point(116, 115);
             this.gmsxBox.Name = "gmsxBox";
             this.gmsxBox.Size = new System.Drawing.Size(33, 20);
             this.gmsxBox.TabIndex = 11;
@@ -535,7 +466,7 @@
             // gmsxPercentLabel
             // 
             this.gmsxPercentLabel.AutoSize = true;
-            this.gmsxPercentLabel.Location = new System.Drawing.Point(117, 195);
+            this.gmsxPercentLabel.Location = new System.Drawing.Point(154, 119);
             this.gmsxPercentLabel.Name = "gmsxPercentLabel";
             this.gmsxPercentLabel.Size = new System.Drawing.Size(57, 13);
             this.gmsxPercentLabel.TabIndex = 12;
@@ -545,7 +476,7 @@
             // accessorialLabel
             // 
             this.accessorialLabel.AutoSize = true;
-            this.accessorialLabel.Location = new System.Drawing.Point(27, 219);
+            this.accessorialLabel.Location = new System.Drawing.Point(24, 150);
             this.accessorialLabel.Name = "accessorialLabel";
             this.accessorialLabel.Size = new System.Drawing.Size(105, 13);
             this.accessorialLabel.TabIndex = 13;
@@ -553,14 +484,14 @@
             // 
             // accessorialBox
             // 
-            this.accessorialBox.Location = new System.Drawing.Point(129, 212);
+            this.accessorialBox.Location = new System.Drawing.Point(135, 143);
             this.accessorialBox.Name = "accessorialBox";
             this.accessorialBox.Size = new System.Drawing.Size(45, 20);
             this.accessorialBox.TabIndex = 14;
             // 
             // generateNotesButton
             // 
-            this.generateNotesButton.Location = new System.Drawing.Point(116, 250);
+            this.generateNotesButton.Location = new System.Drawing.Point(27, 177);
             this.generateNotesButton.Name = "generateNotesButton";
             this.generateNotesButton.Size = new System.Drawing.Size(95, 23);
             this.generateNotesButton.TabIndex = 15;
@@ -571,7 +502,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(126, 128);
+            this.label1.Location = new System.Drawing.Point(210, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(132, 13);
             this.label1.TabIndex = 16;
@@ -580,7 +511,7 @@
             // laneReviewTotalBox
             // 
             this.laneReviewTotalBox.AllowDrop = true;
-            this.laneReviewTotalBox.Location = new System.Drawing.Point(256, 127);
+            this.laneReviewTotalBox.Location = new System.Drawing.Point(348, 26);
             this.laneReviewTotalBox.Name = "laneReviewTotalBox";
             this.laneReviewTotalBox.Size = new System.Drawing.Size(62, 20);
             this.laneReviewTotalBox.TabIndex = 17;
@@ -600,28 +531,12 @@
             this.laneReviewTotalLabel.Controls.Add(this.checkGMS2);
             this.laneReviewTotalLabel.Controls.Add(this.checkGMS1);
             this.laneReviewTotalLabel.Controls.Add(this.rateSelectLabel);
-            this.laneReviewTotalLabel.Controls.Add(this.cubeOutputLabel);
-            this.laneReviewTotalLabel.Controls.Add(this.cubeFeetBox);
-            this.laneReviewTotalLabel.Controls.Add(this.linInchBox);
-            this.laneReviewTotalLabel.Controls.Add(this.linInchLabel);
-            this.laneReviewTotalLabel.Controls.Add(this.linFeetBox);
-            this.laneReviewTotalLabel.Controls.Add(this.linFeetLabel);
             this.laneReviewTotalLabel.Location = new System.Drawing.Point(0, 0);
             this.laneReviewTotalLabel.Name = "laneReviewTotalLabel";
             this.laneReviewTotalLabel.Size = new System.Drawing.Size(449, 292);
             this.laneReviewTotalLabel.TabIndex = 3;
             this.laneReviewTotalLabel.TabStop = false;
             this.laneReviewTotalLabel.Text = "Volume Rate Calculator";
-            // 
-            // addButton
-            // 
-            this.addButton.Location = new System.Drawing.Point(6, 63);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(75, 23);
-            this.addButton.TabIndex = 6;
-            this.addButton.Text = "Add";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // heightTextBox
             // 
@@ -633,16 +548,6 @@
             this.heightTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
             this.heightTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
-            // removeButton
-            // 
-            this.removeButton.Location = new System.Drawing.Point(94, 63);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(75, 23);
-            this.removeButton.TabIndex = 7;
-            this.removeButton.Text = "Remove";
-            this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
             // heightLabel
             // 
             this.heightLabel.AutoSize = true;
@@ -651,27 +556,6 @@
             this.heightLabel.Size = new System.Drawing.Size(38, 13);
             this.heightLabel.TabIndex = 4;
             this.heightLabel.Text = "Height";
-            // 
-            // resetButton
-            // 
-            this.resetButton.Location = new System.Drawing.Point(175, 63);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
-            this.resetButton.TabIndex = 8;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
-            // 
-            // boxListBox
-            // 
-            this.boxListBox.FormattingEnabled = true;
-            this.boxListBox.Location = new System.Drawing.Point(6, 92);
-            this.boxListBox.Name = "boxListBox";
-            this.boxListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.boxListBox.Size = new System.Drawing.Size(218, 147);
-            this.boxListBox.TabIndex = 4;
-            this.boxListBox.SelectedIndexChanged += new System.EventHandler(this.palletGroupSelected);
-            this.boxListBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.boxListBox_KeyUp);
             // 
             // widthTextBox
             // 
@@ -682,16 +566,6 @@
             this.widthTextBox.TabIndex = 2;
             this.widthTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
             this.widthTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
-            // 
-            // stackCheckBox
-            // 
-            this.stackCheckBox.AutoSize = true;
-            this.stackCheckBox.Location = new System.Drawing.Point(270, 40);
-            this.stackCheckBox.Name = "stackCheckBox";
-            this.stackCheckBox.Size = new System.Drawing.Size(80, 17);
-            this.stackCheckBox.TabIndex = 5;
-            this.stackCheckBox.Text = "Stackable?";
-            this.stackCheckBox.UseVisualStyleBackColor = true;
             // 
             // widthLabel
             // 
@@ -704,12 +578,11 @@
             // 
             // calcButton
             // 
-            this.calcButton.Enabled = false;
-            this.calcButton.Location = new System.Drawing.Point(230, 187);
+            this.calcButton.Location = new System.Drawing.Point(10, 75);
             this.calcButton.Name = "calcButton";
             this.calcButton.Size = new System.Drawing.Size(120, 23);
             this.calcButton.TabIndex = 9;
-            this.calcButton.Text = "&Calculate Selected";
+            this.calcButton.Text = "&Calculate Class";
             this.calcButton.UseVisualStyleBackColor = true;
             this.calcButton.Click += new System.EventHandler(this.calcButton_Click);
             // 
@@ -723,35 +596,6 @@
             this.lengthTextBox.Click += new System.EventHandler(this.textBox_EnterSelectAll);
             this.lengthTextBox.Enter += new System.EventHandler(this.textBox_EnterSelectAll);
             // 
-            // calcAllButton
-            // 
-            this.calcAllButton.Enabled = false;
-            this.calcAllButton.Location = new System.Drawing.Point(230, 216);
-            this.calcAllButton.Name = "calcAllButton";
-            this.calcAllButton.Size = new System.Drawing.Size(120, 23);
-            this.calcAllButton.TabIndex = 10;
-            this.calcAllButton.Text = "Calculate &All";
-            this.calcAllButton.UseVisualStyleBackColor = true;
-            this.calcAllButton.Click += new System.EventHandler(this.calcAllButton_Click);
-            // 
-            // resultTextBox
-            // 
-            this.resultTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.resultTextBox.Location = new System.Drawing.Point(325, 118);
-            this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(25, 22);
-            this.resultTextBox.TabIndex = 13;
-            this.resultTextBox.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // linearFeetLabel
-            // 
-            this.linearFeetLabel.AutoSize = true;
-            this.linearFeetLabel.Location = new System.Drawing.Point(232, 127);
-            this.linearFeetLabel.Name = "linearFeetLabel";
-            this.linearFeetLabel.Size = new System.Drawing.Size(63, 13);
-            this.linearFeetLabel.TabIndex = 12;
-            this.linearFeetLabel.Text = "Linear Feet:";
-            // 
             // lengthLabel
             // 
             this.lengthLabel.AutoSize = true;
@@ -761,15 +605,6 @@
             this.lengthLabel.TabIndex = 2;
             this.lengthLabel.Text = "Length";
             // 
-            // cubicFeetLabel
-            // 
-            this.cubicFeetLabel.AutoSize = true;
-            this.cubicFeetLabel.Location = new System.Drawing.Point(232, 151);
-            this.cubicFeetLabel.Name = "cubicFeetLabel";
-            this.cubicFeetLabel.Size = new System.Drawing.Size(58, 13);
-            this.cubicFeetLabel.TabIndex = 17;
-            this.cubicFeetLabel.Text = "Cubic Feet";
-            // 
             // numPiecesLabel
             // 
             this.numPiecesLabel.AutoSize = true;
@@ -778,15 +613,6 @@
             this.numPiecesLabel.Size = new System.Drawing.Size(39, 13);
             this.numPiecesLabel.TabIndex = 1;
             this.numPiecesLabel.Text = "Pieces";
-            // 
-            // cubicFeetResult
-            // 
-            this.cubicFeetResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cubicFeetResult.Location = new System.Drawing.Point(325, 143);
-            this.cubicFeetResult.Name = "cubicFeetResult";
-            this.cubicFeetResult.Size = new System.Drawing.Size(52, 23);
-            this.cubicFeetResult.TabIndex = 18;
-            this.cubicFeetResult.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // piecesTextBox
             // 
@@ -817,7 +643,7 @@
             // calcDensityLabel
             // 
             this.calcDensityLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.calcDensityLabel.Location = new System.Drawing.Point(325, 92);
+            this.calcDensityLabel.Location = new System.Drawing.Point(100, 124);
             this.calcDensityLabel.Name = "calcDensityLabel";
             this.calcDensityLabel.Size = new System.Drawing.Size(37, 23);
             this.calcDensityLabel.TabIndex = 21;
@@ -830,24 +656,14 @@
             this.linearFeetCalcGroup.Controls.Add(this.weightTextBox);
             this.linearFeetCalcGroup.Controls.Add(this.pieceWeightLabel);
             this.linearFeetCalcGroup.Controls.Add(this.piecesTextBox);
-            this.linearFeetCalcGroup.Controls.Add(this.cubicFeetResult);
             this.linearFeetCalcGroup.Controls.Add(this.numPiecesLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.cubicFeetLabel);
             this.linearFeetCalcGroup.Controls.Add(this.lengthLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.linearFeetLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.resultTextBox);
-            this.linearFeetCalcGroup.Controls.Add(this.calcAllButton);
             this.linearFeetCalcGroup.Controls.Add(this.lengthTextBox);
             this.linearFeetCalcGroup.Controls.Add(this.calcButton);
             this.linearFeetCalcGroup.Controls.Add(this.widthLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.stackCheckBox);
             this.linearFeetCalcGroup.Controls.Add(this.widthTextBox);
-            this.linearFeetCalcGroup.Controls.Add(this.boxListBox);
-            this.linearFeetCalcGroup.Controls.Add(this.resetButton);
             this.linearFeetCalcGroup.Controls.Add(this.heightLabel);
-            this.linearFeetCalcGroup.Controls.Add(this.removeButton);
             this.linearFeetCalcGroup.Controls.Add(this.heightTextBox);
-            this.linearFeetCalcGroup.Controls.Add(this.addButton);
             this.linearFeetCalcGroup.Location = new System.Drawing.Point(-4, 0);
             this.linearFeetCalcGroup.Name = "linearFeetCalcGroup";
             this.linearFeetCalcGroup.Size = new System.Drawing.Size(445, 295);
@@ -858,7 +674,7 @@
             // freightClassLabel
             // 
             this.freightClassLabel.AutoSize = true;
-            this.freightClassLabel.Location = new System.Drawing.Point(232, 102);
+            this.freightClassLabel.Location = new System.Drawing.Point(16, 125);
             this.freightClassLabel.Name = "freightClassLabel";
             this.freightClassLabel.Size = new System.Drawing.Size(67, 13);
             this.freightClassLabel.TabIndex = 22;
@@ -910,7 +726,6 @@
             // 
             // TimeCriticalHelper
             // 
-            this.AcceptButton = this.addButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -942,12 +757,6 @@
         private System.Windows.Forms.GroupBox notesOutputGroup;
         private System.Windows.Forms.TextBox copyNotes;
         private System.Windows.Forms.GroupBox spotQuoteHelperGroup;
-        private System.Windows.Forms.Label linFeetLabel;
-        private System.Windows.Forms.TextBox linFeetBox;
-        private System.Windows.Forms.Label linInchLabel;
-        private System.Windows.Forms.TextBox linInchBox;
-        private System.Windows.Forms.Label cubeFeetBox;
-        private System.Windows.Forms.Label cubeOutputLabel;
         private System.Windows.Forms.Label rateSelectLabel;
         private System.Windows.Forms.CheckBox checkGMS1;
         private System.Windows.Forms.CheckBox checkGMS2;
@@ -961,24 +770,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox laneReviewTotalBox;
         private System.Windows.Forms.GroupBox laneReviewTotalLabel;
-        private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.TextBox heightTextBox;
-        private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Label heightLabel;
-        private System.Windows.Forms.Button resetButton;
-        private System.Windows.Forms.ListBox boxListBox;
         private System.Windows.Forms.TextBox widthTextBox;
-        private System.Windows.Forms.CheckBox stackCheckBox;
         private System.Windows.Forms.Label widthLabel;
         private System.Windows.Forms.Button calcButton;
         private System.Windows.Forms.TextBox lengthTextBox;
-        private System.Windows.Forms.Button calcAllButton;
-        private System.Windows.Forms.Label resultTextBox;
-        private System.Windows.Forms.Label linearFeetLabel;
         private System.Windows.Forms.Label lengthLabel;
-        private System.Windows.Forms.Label cubicFeetLabel;
         private System.Windows.Forms.Label numPiecesLabel;
-        private System.Windows.Forms.Label cubicFeetResult;
         private System.Windows.Forms.TextBox piecesTextBox;
         private System.Windows.Forms.Label pieceWeightLabel;
         private System.Windows.Forms.TextBox weightTextBox;

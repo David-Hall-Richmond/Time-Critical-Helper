@@ -37,7 +37,7 @@ namespace Linear_Foot_Calculator
          * ************************/
 
         //adds a pallet to the list based on the current input, needs its own method
-        private void addButton_Click(object sender, EventArgs e)
+        private PalletGroup makePallet()
         {
             bool hasZero = false;
             TextBox[] inputBoxList = new TextBox[5]{ piecesTextBox, lengthTextBox,widthTextBox,heightTextBox,weightTextBox };
@@ -52,16 +52,17 @@ namespace Linear_Foot_Calculator
             
             else
             {
-                PalletGroup newPallet = new PalletGroup(numBoxArray, stackCheckBox.Checked);
+                PalletGroup newPallet = new PalletGroup(numBoxArray, false/*stackCheckBox.Checked*/);
                 if (newPallet.checkDims())
                 {
-                    addToPalletList(newPallet);
+                    return newPallet;
                 }
                 else
                 {
                     MessageBox.Show("If length exceeds 336in or weight per pallet is over 4000lbs use Exclusive Use rate. If height or width exceed 96in use flatbed");
                 }
             }
+            return null;
            
         }
 
@@ -77,11 +78,11 @@ namespace Linear_Foot_Calculator
                 toAdd.Stack = false;
                 MessageBox.Show("Stackable freight cannot exceed 48\"");
             }
-            boxListBox.Items.Add(toAdd);
+            //boxListBox.Items.Add(toAdd);
             clearEntryFields();
-            calcAllButton.Enabled = true;
-            boxListBox.Focus();
-            boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
+            //calcAllButton.Enabled = true;
+            //boxListBox.Focus();
+            //boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
         }
 
         //Loads the text fields for the pallet addition into a Textbox array and returns true if they have a zero
@@ -107,19 +108,19 @@ namespace Linear_Foot_Calculator
          * Calculation Buttons and methods
          * *************************/
 
-        private void calcAllButton_Click(object sender, EventArgs e)
+        /*private void calcAllButton_Click(object sender, EventArgs e)
         {
             int linearFeet = calcAllLinFeet();
             int cubicFeet = linearFeet * 64;
 
-            resultTextBox.Text = linearFeet.ToString();
-            cubicFeetResult.Text = cubicFeet.ToString();
+            //resultTextBox.Text = linearFeet.ToString();
+            //cubicFeetResult.Text = cubicFeet.ToString();
 
             calcFreighClass();
         }
 
         //calculates the linear feet of all groups in the listbox
-        private int calcAllLinFeet()
+       private int calcAllLinFeet()
         {
             int linFeetTotal = 0;
             int totalWeight = 0;
@@ -134,24 +135,24 @@ namespace Linear_Foot_Calculator
                 return totalWeight / 1000;
             }
             return linFeetTotal;
-        }
+        }*/
 
         //calculates the linear feet of the group selected
         private void calcButton_Click(object sender, EventArgs e)
         {
-            PalletGroup calcOnePallet;
-            int linearFeet;
-            calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
-            linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
-            resultTextBox.Text = linearFeet.ToString();
-            cubicFeetResult.Text = (linearFeet * 64).ToString();
+            //PalletGroup calcOnePallet;
+            //int linearFeet;
+            //calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
+            //linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
+            //resultTextBox.Text = linearFeet.ToString();
+            //cubicFeetResult.Text = (linearFeet * 64).ToString();
 
             calcFreighClass();
         }
 
         private void calcFreighClass()
         {
-            PalletGroup current = getPalletAtIndex(boxListBox.SelectedIndex);
+            PalletGroup current = makePallet();
             calcDensityLabel.Text = PalletCalc.calcClass(current);
         }
 
@@ -160,7 +161,7 @@ namespace Linear_Foot_Calculator
          * **************/
 
 
-        private void removeButton_Click(object sender, EventArgs e)
+       /* private void removeButton_Click(object sender, EventArgs e)
         {
             deletePalletGroup();
         }
@@ -172,10 +173,10 @@ namespace Linear_Foot_Calculator
             {
                 deletePalletGroup();
             }
-        }
+        }*/
 
         //removes the selected box from the ListBox
-        private void deletePalletGroup()
+        /*private void deletePalletGroup()
         {
             boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
         }
@@ -191,7 +192,7 @@ namespace Linear_Foot_Calculator
 
             return currentPallet;
 
-        }
+        }*/
 
 
 
@@ -202,18 +203,18 @@ namespace Linear_Foot_Calculator
             widthTextBox.Text = "";
             heightTextBox.Text = "";
             weightTextBox.Text = "";
-            stackCheckBox.Checked = false;
+            //stackCheckBox.Checked = false;
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            boxListBox.Items.Clear();
-            resultTextBox.Text = "";
+            //boxListBox.Items.Clear();
+            //resultTextBox.Text = "";
             clearEntryFields();
             piecesTextBox.Focus();
-            cubicFeetResult.Text = "";
-            calcButton.Enabled = false;
-            calcAllButton.Enabled = false;
+            //cubicFeetResult.Text = "";
+            //calcButton.Enabled = false;
+            //calcAllButton.Enabled = false;
         }
 
         private void textBox_EnterSelectAll(object sender, EventArgs e)
@@ -222,7 +223,7 @@ namespace Linear_Foot_Calculator
             clearBox.SelectAll();
         }
 
-        private void palletGroupSelected(object sender, EventArgs e)
+       /* private void palletGroupSelected(object sender, EventArgs e)
         {
             if (boxListBox.SelectedIndex >= 0)
             {
@@ -236,14 +237,14 @@ namespace Linear_Foot_Calculator
             {
                 calcAllButton.Enabled = false;
             }
-        }
+        }*/
         
 
         /***************************
          * Volume Quote Helper Calculations
          * *************************/
 
-        private void linearToCubicEntry(object sender, EventArgs e)
+        /*private void linearToCubicEntry(object sender, EventArgs e)
         {
             int input;
             TextBox inputBox = (TextBox)sender;
@@ -259,7 +260,7 @@ namespace Linear_Foot_Calculator
                 cubeOutputLabel.Text = "";
             }
 
-        }
+        }*/
 
         /***********************
          * Volume Notes Creation
