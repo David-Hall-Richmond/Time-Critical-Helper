@@ -28,217 +28,15 @@ namespace Linear_Foot_Calculator
                 public TimeCriticalHelper()
                 {
                     InitializeComponent();
-        //            piecesTextBox.Focus();
-        //            truckSizeComboBox.SelectedItem = "12ft Truck";
-
                 }
 
-        //        /**************************
-        //         * Adding Pallets
-        //         * ************************/
-
-        //        //adds a pallet to the list based on the current input, needs its own method
-        //        private PalletGroup makePallet()
-        //        {
-        //            bool hasZero = false;
-        //            TextBox[] inputBoxList = new TextBox[5] { piecesTextBox, lengthTextBox, widthTextBox, heightTextBox, weightTextBox };
-        //            int[] numBoxArray = new int[5];
-
-        //            hasZero = loadFromInput(inputBoxList, numBoxArray);
-
-        //            if (hasZero)
-        //            {
-        //                MessageBox.Show("No Field Can Be 0");
-        //            }
-
-        //            else
-        //            {
-        //                PalletGroup newPallet = new PalletGroup(numBoxArray, false/*stackCheckBox.Checked*/);
-        //                if (newPallet.checkDims())
-        //                {
-        //                    return newPallet;
-        //                }
-        //                else
-        //                {
-        //                    MessageBox.Show("If length exceeds 336in or weight per pallet is over 4000lbs use Exclusive Use rate. If height or width exceed 96in use flatbed");
-        //                }
-        //            }
-        //            return null;
-
-        //        }
-
-        //        //Checks the supplied pallet to see if the dims should be swapped to minimize linear feet
-        //        //adds the pallet to the ListBox and resets the entry and focus for next entry
-        //        private void addToPalletList(PalletGroup toAdd)
-        //        {
-
-        //            toAdd.checkSwap();
-
-        //            if (toAdd.Stack && toAdd.Height > 48)
-        //            {
-        //                toAdd.Stack = false;
-        //                MessageBox.Show("Stackable freight cannot exceed 48\"");
-        //            }
-        //            //boxListBox.Items.Add(toAdd);
-        //            clearEntryFields();
-        //            //calcAllButton.Enabled = true;
-        //            //boxListBox.Focus();
-        //            //boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
-        //        }
-
-        //        //Loads the text fields for the pallet addition into a Textbox array and returns true if they have a zero
-        //        private bool loadFromInput(TextBox[] input, int[] numBoxArray)
-        //        {
-        //            bool hasZero = false;
-        //            for (int i = 0; i < input.Length; i++)
-        //            {
-        //                if (int.TryParse(input[i].Text, out numBoxArray[i])) { }
-        //                else
-        //                {
-        //                    numBoxArray[i] = 0;
-        //                    hasZero = true;
-        //                }
-
-        //                if (numBoxArray[i] == 0) hasZero = true;
-        //            }
-
-        //            return hasZero;
-        //        }
-
-        //        /***************************
-        //         * Calculation Buttons and methods
-        //         * *************************/
-
-        //        /*private void calcAllButton_Click(object sender, EventArgs e)
-        //        {
-        //            int linearFeet = calcAllLinFeet();
-        //            int cubicFeet = linearFeet * 64;
-
-        //            //resultTextBox.Text = linearFeet.ToString();
-        //            //cubicFeetResult.Text = cubicFeet.ToString();
-
-        //            calcFreighClass();
-        //        }
-
-        //        //calculates the linear feet of all groups in the listbox
-        //       private int calcAllLinFeet()
-        //        {
-        //            int linFeetTotal = 0;
-        //            int totalWeight = 0;
-        //            for (int i = 0; i < boxListBox.Items.Count; i++)
-        //            {
-        //                PalletGroup j = getPalletAtIndex(i);
-        //                linFeetTotal += PalletCalc.calcLinFeet(j, false);
-        //                totalWeight += j.Weight;
-        //            }
-        //            if (linFeetTotal < totalWeight / 1000)
-        //            {
-        //                return totalWeight / 1000;
-        //            }
-        //            return linFeetTotal;
-        //        }*/
-
-        //        //calculates the linear feet of the group selected
-        //        private void calcButton_Click(object sender, EventArgs e)
-        //        {
-        //            //PalletGroup calcOnePallet;
-        //            //int linearFeet;
-        //            //calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
-        //            //linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
-        //            //resultTextBox.Text = linearFeet.ToString();
-        //            //cubicFeetResult.Text = (linearFeet * 64).ToString();
-
-        //            calcFreighClass();
-        //        }
-
-        //        private void calcFreighClass()
-        //        {
-        //            PalletGroup current = makePallet();
-        //            calcDensityLabel.Text = PalletCalc.calcClass(current);
-        //        }
-
-        //        /****************
-        //         * Delete Pallets
-        //         * **************/
-
-
-        //        /* private void removeButton_Click(object sender, EventArgs e)
-        //         {
-        //             deletePalletGroup();
-        //         }
-
-        //         //calls to remove selected pallet of Delete key is pressed
-        //         private void boxListBox_KeyUp(object sender, KeyEventArgs e)
-        //         {
-        //             if (e.KeyCode == Keys.Delete)
-        //             {
-        //                 deletePalletGroup();
-        //             }
-        //         }*/
-
-        //        //removes the selected box from the ListBox
-        //        /*private void deletePalletGroup()
-        //        {
-        //            boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
-        //        }
-
-
-
-        //        //returns a palletgroup object at the given index
-        //        private PalletGroup getPalletAtIndex(int index)
-        //        {
-        //            PalletGroup currentPallet;
-
-        //            currentPallet = (PalletGroup)boxListBox.Items[index];
-
-        //            return currentPallet;
-
-        //        }*/
-
-
-
-        //        private void clearEntryFields()
-        //        {
-        //            piecesTextBox.Text = "";
-        //            lengthTextBox.Text = "";
-        //            widthTextBox.Text = "";
-        //            heightTextBox.Text = "";
-        //            weightTextBox.Text = "";
-        //            //stackCheckBox.Checked = false;
-        //        }
-
-        //        private void resetButton_Click(object sender, EventArgs e)
-        //        {
-        //            //boxListBox.Items.Clear();
-        //            //resultTextBox.Text = "";
-        //            clearEntryFields();
-        //            piecesTextBox.Focus();
-        //            //cubicFeetResult.Text = "";
-        //            //calcButton.Enabled = false;
-        //            //calcAllButton.Enabled = false;
-        //        }
+     
 
         private void textBox_EnterSelectAll(object sender, EventArgs e)
         {
             TextBox clearBox = (TextBox)sender;
             clearBox.SelectAll();
         }
-
-        /* private void palletGroupSelected(object sender, EventArgs e)
-         {
-             if (boxListBox.SelectedIndex >= 0)
-             {
-                 calcButton.Enabled = true;
-             }
-             else
-             {
-                 calcButton.Enabled = false;
-             }
-             if( boxListBox.Items.Count == 0)
-             {
-                 calcAllButton.Enabled = false;
-             }
-         }*/
 
 
         /***************************
@@ -542,12 +340,53 @@ namespace Linear_Foot_Calculator
 
         private void actualAmtGroup_Enter(object sender, EventArgs e)
         {
+            decimal twelveKGross;
+            decimal CWT;
+            decimal twelveKDiscount;
 
+            integer actualWeight;
+            decimal fuelPercent;
+            decimal gmsCharge;
+            decimal totalAccessorials;
+
+            decimal actualGross;
+            decimal actualDiscountPercentage;
+            decimal actualDiscountAmount;
+            decimal fuelTotal;
+            decimal netTotal;
+            decimal totalCharge;
+
+            Decimal.TryParse(tenKGrossBox.Text, out twelveKGross);
+            Decimal.TryParse(CWTBox.Text,out CWT);
+            Decimal.TryParse(tenKDiscBox.Text, out twelveKDiscount);
+
+            Int32.TryParse(actualWgtBox.Text, out actualWeight);
+            Decimal.TryParse(fuelBox.Text, out fuelPercent);
+            Decimal.TryParse(gmsChargeBox.Text, out gmsCharge);
+            Decimal.TryParse(accessBox.Text, out totalAccessorials);
+
+            actualGross = (actualWeight/100) * CWT;
+            actualDiscountPercentage = twelveKDiscount/twelveKGross;
+            actualDiscountAmount = actualGross * actualDiscountPercentage;
+            netTotal = actualGross - actualDiscountAmount;
+            fuelTotal = netTotal * fuelPercent;
+            netTotal += fuelTotal;
+            totalCharge = netTotal + totalAccessorials + gmsCharge;
+
+            actGrossResultLabel.Text = actualGross.ToString();
+            actDiscPercLabel.Text = actualDiscountPercentage.ToString();
+            actDiscAmtLabel.Text = actualDiscountAmount.ToString();
+            fuelSurchResultLabel.Text = fuelTotal.ToString();
+            netChargeLabel.Text = netTotal.ToString();
+            totalChargeResultLabel.Text = totalCharge.ToString();
         }
 
+        private void updateSpecialPricingLabels(){
+
+        }
         private void calculateTotalButton_Click(object sender, EventArgs e)
         {
-
+                updateSpecialPricingLabels();
         }
 
         private void clearFieldsButton_Click(object sender, EventArgs e)
