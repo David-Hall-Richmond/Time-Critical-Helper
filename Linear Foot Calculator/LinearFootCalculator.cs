@@ -15,207 +15,208 @@ using System.Windows.Forms;
  * - add volume quote calculator
  * - add freight class calculator
  */
- /***************************************************************************************************************
-  * *************************************************************************************************************
-  * *******************************Linear Foot Calculator Section************************************************
-  * */
+/***************************************************************************************************************
+ * *************************************************************************************************************
+ * *******************************Linear Foot Calculator Section************************************************
+ * */
+
 namespace Linear_Foot_Calculator
 {
-    public partial class TimeCriticalHelper : Form
-    {
-                  
-        public TimeCriticalHelper()
-        {
-            InitializeComponent();
-            piecesTextBox.Focus();
-            truckSizeComboBox.SelectedItem = "12ft Truck";
-            
-        }
+   public partial class TimeCriticalHelper : Form
+   {
 
-        /**************************
-         * Adding Pallets
-         * ************************/
-
-        //adds a pallet to the list based on the current input, needs its own method
-        private PalletGroup makePallet()
-        {
-            bool hasZero = false;
-            TextBox[] inputBoxList = new TextBox[5]{ piecesTextBox, lengthTextBox,widthTextBox,heightTextBox,weightTextBox };
-            int[] numBoxArray = new int[5];
-
-            hasZero =loadFromInput(inputBoxList,numBoxArray);
-
-            if (hasZero)
-            {
-                MessageBox.Show("No Field Can Be 0");
-            }
-            
-            else
-            {
-                PalletGroup newPallet = new PalletGroup(numBoxArray, false/*stackCheckBox.Checked*/);
-                if (newPallet.checkDims())
+                public TimeCriticalHelper()
                 {
-                    return newPallet;
-                }
-                else
-                {
-                    MessageBox.Show("If length exceeds 336in or weight per pallet is over 4000lbs use Exclusive Use rate. If height or width exceed 96in use flatbed");
-                }
-            }
-            return null;
-           
-        }
+                    InitializeComponent();
+        //            piecesTextBox.Focus();
+        //            truckSizeComboBox.SelectedItem = "12ft Truck";
 
-        //Checks the supplied pallet to see if the dims should be swapped to minimize linear feet
-        //adds the pallet to the ListBox and resets the entry and focus for next entry
-        private void addToPalletList(PalletGroup toAdd)
-        {
-
-            toAdd.checkSwap();
-
-            if (toAdd.Stack && toAdd.Height > 48)
-            {
-                toAdd.Stack = false;
-                MessageBox.Show("Stackable freight cannot exceed 48\"");
-            }
-            //boxListBox.Items.Add(toAdd);
-            clearEntryFields();
-            //calcAllButton.Enabled = true;
-            //boxListBox.Focus();
-            //boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
-        }
-
-        //Loads the text fields for the pallet addition into a Textbox array and returns true if they have a zero
-        private bool loadFromInput(TextBox[] input,int[] numBoxArray)
-        {
-            bool hasZero = false;
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (int.TryParse(input[i].Text, out numBoxArray[i])) { }
-                else
-                {
-                    numBoxArray[i] = 0;
-                    hasZero = true;
                 }
 
-                if (numBoxArray[i] == 0) hasZero = true;
-            }
+        //        /**************************
+        //         * Adding Pallets
+        //         * ************************/
 
-            return hasZero;
-        }
+        //        //adds a pallet to the list based on the current input, needs its own method
+        //        private PalletGroup makePallet()
+        //        {
+        //            bool hasZero = false;
+        //            TextBox[] inputBoxList = new TextBox[5] { piecesTextBox, lengthTextBox, widthTextBox, heightTextBox, weightTextBox };
+        //            int[] numBoxArray = new int[5];
 
-        /***************************
-         * Calculation Buttons and methods
-         * *************************/
+        //            hasZero = loadFromInput(inputBoxList, numBoxArray);
 
-        /*private void calcAllButton_Click(object sender, EventArgs e)
-        {
-            int linearFeet = calcAllLinFeet();
-            int cubicFeet = linearFeet * 64;
+        //            if (hasZero)
+        //            {
+        //                MessageBox.Show("No Field Can Be 0");
+        //            }
 
-            //resultTextBox.Text = linearFeet.ToString();
-            //cubicFeetResult.Text = cubicFeet.ToString();
+        //            else
+        //            {
+        //                PalletGroup newPallet = new PalletGroup(numBoxArray, false/*stackCheckBox.Checked*/);
+        //                if (newPallet.checkDims())
+        //                {
+        //                    return newPallet;
+        //                }
+        //                else
+        //                {
+        //                    MessageBox.Show("If length exceeds 336in or weight per pallet is over 4000lbs use Exclusive Use rate. If height or width exceed 96in use flatbed");
+        //                }
+        //            }
+        //            return null;
 
-            calcFreighClass();
-        }
+        //        }
 
-        //calculates the linear feet of all groups in the listbox
-       private int calcAllLinFeet()
-        {
-            int linFeetTotal = 0;
-            int totalWeight = 0;
-            for (int i = 0; i < boxListBox.Items.Count; i++)
-            {
-                PalletGroup j = getPalletAtIndex(i);
-                linFeetTotal += PalletCalc.calcLinFeet(j, false);
-                totalWeight += j.Weight;
-            }
-            if (linFeetTotal < totalWeight / 1000)
-            {
-                return totalWeight / 1000;
-            }
-            return linFeetTotal;
-        }*/
+        //        //Checks the supplied pallet to see if the dims should be swapped to minimize linear feet
+        //        //adds the pallet to the ListBox and resets the entry and focus for next entry
+        //        private void addToPalletList(PalletGroup toAdd)
+        //        {
 
-        //calculates the linear feet of the group selected
-        private void calcButton_Click(object sender, EventArgs e)
-        {
-            //PalletGroup calcOnePallet;
-            //int linearFeet;
-            //calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
-            //linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
-            //resultTextBox.Text = linearFeet.ToString();
-            //cubicFeetResult.Text = (linearFeet * 64).ToString();
+        //            toAdd.checkSwap();
 
-            calcFreighClass();
-        }
+        //            if (toAdd.Stack && toAdd.Height > 48)
+        //            {
+        //                toAdd.Stack = false;
+        //                MessageBox.Show("Stackable freight cannot exceed 48\"");
+        //            }
+        //            //boxListBox.Items.Add(toAdd);
+        //            clearEntryFields();
+        //            //calcAllButton.Enabled = true;
+        //            //boxListBox.Focus();
+        //            //boxListBox.SelectedIndex = (boxListBox.Items.Count - 1);
+        //        }
 
-        private void calcFreighClass()
-        {
-            PalletGroup current = makePallet();
-            calcDensityLabel.Text = PalletCalc.calcClass(current);
-        }
+        //        //Loads the text fields for the pallet addition into a Textbox array and returns true if they have a zero
+        //        private bool loadFromInput(TextBox[] input, int[] numBoxArray)
+        //        {
+        //            bool hasZero = false;
+        //            for (int i = 0; i < input.Length; i++)
+        //            {
+        //                if (int.TryParse(input[i].Text, out numBoxArray[i])) { }
+        //                else
+        //                {
+        //                    numBoxArray[i] = 0;
+        //                    hasZero = true;
+        //                }
 
-        /****************
-         * Delete Pallets
-         * **************/
+        //                if (numBoxArray[i] == 0) hasZero = true;
+        //            }
+
+        //            return hasZero;
+        //        }
+
+        //        /***************************
+        //         * Calculation Buttons and methods
+        //         * *************************/
+
+        //        /*private void calcAllButton_Click(object sender, EventArgs e)
+        //        {
+        //            int linearFeet = calcAllLinFeet();
+        //            int cubicFeet = linearFeet * 64;
+
+        //            //resultTextBox.Text = linearFeet.ToString();
+        //            //cubicFeetResult.Text = cubicFeet.ToString();
+
+        //            calcFreighClass();
+        //        }
+
+        //        //calculates the linear feet of all groups in the listbox
+        //       private int calcAllLinFeet()
+        //        {
+        //            int linFeetTotal = 0;
+        //            int totalWeight = 0;
+        //            for (int i = 0; i < boxListBox.Items.Count; i++)
+        //            {
+        //                PalletGroup j = getPalletAtIndex(i);
+        //                linFeetTotal += PalletCalc.calcLinFeet(j, false);
+        //                totalWeight += j.Weight;
+        //            }
+        //            if (linFeetTotal < totalWeight / 1000)
+        //            {
+        //                return totalWeight / 1000;
+        //            }
+        //            return linFeetTotal;
+        //        }*/
+
+        //        //calculates the linear feet of the group selected
+        //        private void calcButton_Click(object sender, EventArgs e)
+        //        {
+        //            //PalletGroup calcOnePallet;
+        //            //int linearFeet;
+        //            //calcOnePallet = getPalletAtIndex(boxListBox.SelectedIndex);
+        //            //linearFeet = PalletCalc.calcLinFeet(calcOnePallet,true);
+        //            //resultTextBox.Text = linearFeet.ToString();
+        //            //cubicFeetResult.Text = (linearFeet * 64).ToString();
+
+        //            calcFreighClass();
+        //        }
+
+        //        private void calcFreighClass()
+        //        {
+        //            PalletGroup current = makePallet();
+        //            calcDensityLabel.Text = PalletCalc.calcClass(current);
+        //        }
+
+        //        /****************
+        //         * Delete Pallets
+        //         * **************/
 
 
-       /* private void removeButton_Click(object sender, EventArgs e)
-        {
-            deletePalletGroup();
-        }
+        //        /* private void removeButton_Click(object sender, EventArgs e)
+        //         {
+        //             deletePalletGroup();
+        //         }
 
-        //calls to remove selected pallet of Delete key is pressed
-        private void boxListBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                deletePalletGroup();
-            }
-        }*/
+        //         //calls to remove selected pallet of Delete key is pressed
+        //         private void boxListBox_KeyUp(object sender, KeyEventArgs e)
+        //         {
+        //             if (e.KeyCode == Keys.Delete)
+        //             {
+        //                 deletePalletGroup();
+        //             }
+        //         }*/
 
-        //removes the selected box from the ListBox
-        /*private void deletePalletGroup()
-        {
-            boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
-        }
-
-
-
-        //returns a palletgroup object at the given index
-        private PalletGroup getPalletAtIndex(int index)
-        {
-            PalletGroup currentPallet;
-
-            currentPallet = (PalletGroup)boxListBox.Items[index];
-
-            return currentPallet;
-
-        }*/
+        //        //removes the selected box from the ListBox
+        //        /*private void deletePalletGroup()
+        //        {
+        //            boxListBox.Items.Remove(boxListBox.Items[boxListBox.SelectedIndex]);
+        //        }
 
 
 
-        private void clearEntryFields()
-        {
-            piecesTextBox.Text = "";
-            lengthTextBox.Text = "";
-            widthTextBox.Text = "";
-            heightTextBox.Text = "";
-            weightTextBox.Text = "";
-            //stackCheckBox.Checked = false;
-        }
+        //        //returns a palletgroup object at the given index
+        //        private PalletGroup getPalletAtIndex(int index)
+        //        {
+        //            PalletGroup currentPallet;
 
-        private void resetButton_Click(object sender, EventArgs e)
-        {
-            //boxListBox.Items.Clear();
-            //resultTextBox.Text = "";
-            clearEntryFields();
-            piecesTextBox.Focus();
-            //cubicFeetResult.Text = "";
-            //calcButton.Enabled = false;
-            //calcAllButton.Enabled = false;
-        }
+        //            currentPallet = (PalletGroup)boxListBox.Items[index];
+
+        //            return currentPallet;
+
+        //        }*/
+
+
+
+        //        private void clearEntryFields()
+        //        {
+        //            piecesTextBox.Text = "";
+        //            lengthTextBox.Text = "";
+        //            widthTextBox.Text = "";
+        //            heightTextBox.Text = "";
+        //            weightTextBox.Text = "";
+        //            //stackCheckBox.Checked = false;
+        //        }
+
+        //        private void resetButton_Click(object sender, EventArgs e)
+        //        {
+        //            //boxListBox.Items.Clear();
+        //            //resultTextBox.Text = "";
+        //            clearEntryFields();
+        //            piecesTextBox.Focus();
+        //            //cubicFeetResult.Text = "";
+        //            //calcButton.Enabled = false;
+        //            //calcAllButton.Enabled = false;
+        //        }
 
         private void textBox_EnterSelectAll(object sender, EventArgs e)
         {
@@ -223,22 +224,22 @@ namespace Linear_Foot_Calculator
             clearBox.SelectAll();
         }
 
-       /* private void palletGroupSelected(object sender, EventArgs e)
-        {
-            if (boxListBox.SelectedIndex >= 0)
-            {
-                calcButton.Enabled = true;
-            }
-            else
-            {
-                calcButton.Enabled = false;
-            }
-            if( boxListBox.Items.Count == 0)
-            {
-                calcAllButton.Enabled = false;
-            }
-        }*/
-        
+        /* private void palletGroupSelected(object sender, EventArgs e)
+         {
+             if (boxListBox.SelectedIndex >= 0)
+             {
+                 calcButton.Enabled = true;
+             }
+             else
+             {
+                 calcButton.Enabled = false;
+             }
+             if( boxListBox.Items.Count == 0)
+             {
+                 calcAllButton.Enabled = false;
+             }
+         }*/
+
 
         /***************************
          * Volume Quote Helper Calculations
@@ -265,7 +266,7 @@ namespace Linear_Foot_Calculator
         /***********************
          * Volume Notes Creation
          * *********************/
-        
+
 
         private void generateNotesButton_Click(object sender, EventArgs e)
         {
@@ -436,10 +437,10 @@ namespace Linear_Foot_Calculator
         {
             Tuple<CheckBox, decimal>[] dedAccess =
            {
-                new Tuple<CheckBox,decimal>(liftGateCheck,225M),
+                new Tuple<CheckBox,decimal>(liftGateCheck,275M),
                 new Tuple<CheckBox,decimal>(insideDelCheck,225M),
-                new Tuple<CheckBox,decimal>(newYorkDelCheck,300M),
-                new Tuple<CheckBox,decimal>(hazCheck,300M),
+                new Tuple<CheckBox,decimal>(newYorkDelCheck,500M),
+                new Tuple<CheckBox,decimal>(hazCheck,500M),
                 new Tuple<CheckBox,decimal>(upgradeCheck,75M),
            };
             decimal total = 0M;
@@ -461,16 +462,16 @@ namespace Linear_Foot_Calculator
             switch (truckSizeComboBox.Text)
             {
                 case "Cargo Van":
-                    truckCost = 3.00M;
+                    truckCost = 3.75M;
                     break;
                 case "12ft Truck":
-                    truckCost = 4.00M;
+                    truckCost = 5.00M;
                     break;
                 case "24ft Truck":
-                    truckCost = 4.50M;
+                    truckCost = 5.50M;
                     break;
                 case "53ft Truck":
-                    truckCost = 5.25M;
+                    truckCost = 6.50M;
                     break;
             }
             return truckCost;
@@ -480,20 +481,20 @@ namespace Linear_Foot_Calculator
         private decimal checkTruckMin(decimal truckCost,decimal dedicatedCost)
         {
             decimal retValue = dedicatedCost;
-            if(truckCost==3.00M && dedicatedCost< 475.00M){
-                retValue = 475.00M;
-            }
-            if (truckCost == 4.00M && dedicatedCost < 575.00M)
-            {
-                retValue = 575.00M;
-            }
-            if (truckCost == 4.50M && dedicatedCost < 650.00M)
-            {
+            if(truckCost==3.75M && dedicatedCost< 650.00M){
                 retValue = 650.00M;
             }
-            if (truckCost == 5.25M && dedicatedCost < 1100.00M)
+            if (truckCost == 5.00M && dedicatedCost < 795.00M)
             {
-                retValue = 1100.00M;
+                retValue = 795.00M;
+            }
+            if (truckCost ==5.50M && dedicatedCost < 895.00M)
+            {
+                retValue = 895.00M;
+            }
+            if (truckCost == 6.50M && dedicatedCost < 1495.00M)
+            {
+                retValue = 1495.00M;
             }
 
             return retValue;
@@ -537,6 +538,21 @@ namespace Linear_Foot_Calculator
             transitTimeTextBox.Text = "";
             mileageTextBox.Text = "";
             truckSizeComboBox.SelectedItem = "12ft Truck";
+        }
+
+        private void actualAmtGroup_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void calculateTotalButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearFieldsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
