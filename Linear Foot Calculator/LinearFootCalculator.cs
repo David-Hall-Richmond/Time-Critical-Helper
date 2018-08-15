@@ -340,49 +340,53 @@ namespace Linear_Foot_Calculator
 
         private void actualAmtGroup_Enter(object sender, EventArgs e)
         {
+            
+        }
+
+        private void updateSpecialPricingLabels(){
             decimal twelveKGross;
             decimal CWT;
             decimal twelveKDiscount;
 
-            integer actualWeight;
+            Int32 actualWeight;
             decimal fuelPercent;
             decimal gmsCharge;
             decimal totalAccessorials;
 
             decimal actualGross;
             decimal actualDiscountPercentage;
+            decimal percentForDisplay;
             decimal actualDiscountAmount;
             decimal fuelTotal;
             decimal netTotal;
             decimal totalCharge;
 
+
             Decimal.TryParse(tenKGrossBox.Text, out twelveKGross);
-            Decimal.TryParse(CWTBox.Text,out CWT);
+            Decimal.TryParse(CWTBox.Text, out CWT);
             Decimal.TryParse(tenKDiscBox.Text, out twelveKDiscount);
 
             Int32.TryParse(actualWgtBox.Text, out actualWeight);
             Decimal.TryParse(fuelBox.Text, out fuelPercent);
+            fuelPercent /= 100;
             Decimal.TryParse(gmsChargeBox.Text, out gmsCharge);
             Decimal.TryParse(accessBox.Text, out totalAccessorials);
 
-            actualGross = (actualWeight/100) * CWT;
-            actualDiscountPercentage = twelveKDiscount/twelveKGross;
+            actualGross = (actualWeight / 100) * CWT;
+            actualDiscountPercentage = twelveKDiscount / twelveKGross;
+            percentForDisplay = actualDiscountPercentage * 100;
             actualDiscountAmount = actualGross * actualDiscountPercentage;
             netTotal = actualGross - actualDiscountAmount;
             fuelTotal = netTotal * fuelPercent;
             netTotal += fuelTotal;
             totalCharge = netTotal + totalAccessorials + gmsCharge;
 
-            actGrossResultLabel.Text = actualGross.ToString();
-            actDiscPercLabel.Text = actualDiscountPercentage.ToString();
-            actDiscAmtLabel.Text = actualDiscountAmount.ToString();
-            fuelSurchResultLabel.Text = fuelTotal.ToString();
-            netChargeLabel.Text = netTotal.ToString();
-            totalChargeResultLabel.Text = totalCharge.ToString();
-        }
-
-        private void updateSpecialPricingLabels(){
-
+            actGrossResultLabel.Text = "$" + actualGross.ToString("F");
+            actDiscPercLabel.Text = "$" + percentForDisplay.ToString("F");
+            actDiscAmtLabel.Text = "$" + actualDiscountAmount.ToString("F");
+            fuelSurchResultLabel.Text = "$" + fuelTotal.ToString("F");
+            netChargeLabel.Text = "$" + netTotal.ToString("F");
+            totalChargeResultLabel.Text = "$" + totalCharge.ToString("F");
         }
         private void calculateTotalButton_Click(object sender, EventArgs e)
         {
@@ -391,7 +395,21 @@ namespace Linear_Foot_Calculator
 
         private void clearFieldsButton_Click(object sender, EventArgs e)
         {
+            tenKGrossBox.Text = "";
+            CWTBox.Text = "";
+            tenKDiscBox.Text = "";
 
+            actualWgtBox.Text = "";
+            fuelBox.Text = "";
+
+            gmsChargeBox.Text = "";
+            accessBox.Text = "";
+            actGrossResultLabel.Text = "";
+            actDiscPercLabel.Text = "";
+            actDiscAmtLabel.Text = "";
+            fuelSurchResultLabel.Text = "";
+            netChargeLabel.Text = "";
+            totalChargeResultLabel.Text = "";
         }
     }
 }

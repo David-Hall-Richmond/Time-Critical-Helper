@@ -95,7 +95,7 @@ namespace Linear_Foot_Calculator
             this.gmsAmount = new System.Windows.Forms.Label();
             this.fscAmount = new System.Windows.Forms.Label();
             this.actualWgtLabel = new System.Windows.Forms.Label();
-            this.tenKGroup = new System.Windows.Forms.GroupBox();
+            this.twelveKGroup = new System.Windows.Forms.GroupBox();
             this.tenKGrossLabel = new System.Windows.Forms.Label();
             this.tenKGrossBox = new System.Windows.Forms.TextBox();
             this.tenKDiscBox = new System.Windows.Forms.TextBox();
@@ -117,7 +117,7 @@ namespace Linear_Foot_Calculator
             this.specPriceTab.SuspendLayout();
             this.totalsGroup.SuspendLayout();
             this.actualAmtGroup.SuspendLayout();
-            this.tenKGroup.SuspendLayout();
+            this.twelveKGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // notesOutputGroup
@@ -598,7 +598,7 @@ namespace Linear_Foot_Calculator
             this.specPriceTab.Controls.Add(this.calculateTotalButton);
             this.specPriceTab.Controls.Add(this.totalsGroup);
             this.specPriceTab.Controls.Add(this.actualAmtGroup);
-            this.specPriceTab.Controls.Add(this.tenKGroup);
+            this.specPriceTab.Controls.Add(this.twelveKGroup);
             this.specPriceTab.Location = new System.Drawing.Point(4, 22);
             this.specPriceTab.Name = "specPriceTab";
             this.specPriceTab.Size = new System.Drawing.Size(437, 297);
@@ -796,20 +796,20 @@ namespace Linear_Foot_Calculator
             this.actualWgtLabel.TabIndex = 0;
             this.actualWgtLabel.Text = "Weight";
             // 
-            // tenKGroup
+            // twelveKGroup
             // 
-            this.tenKGroup.Controls.Add(this.tenKGrossLabel);
-            this.tenKGroup.Controls.Add(this.tenKGrossBox);
-            this.tenKGroup.Controls.Add(this.tenKDiscBox);
-            this.tenKGroup.Controls.Add(this.CWTLabel);
-            this.tenKGroup.Controls.Add(this.CWTBox);
-            this.tenKGroup.Controls.Add(this.tenKDiscLabel);
-            this.tenKGroup.Location = new System.Drawing.Point(12, 6);
-            this.tenKGroup.Name = "tenKGroup";
-            this.tenKGroup.Size = new System.Drawing.Size(198, 100);
-            this.tenKGroup.TabIndex = 5;
-            this.tenKGroup.TabStop = false;
-            this.tenKGroup.Text = "10,000 lb Amounts";
+            this.twelveKGroup.Controls.Add(this.tenKGrossLabel);
+            this.twelveKGroup.Controls.Add(this.tenKGrossBox);
+            this.twelveKGroup.Controls.Add(this.tenKDiscBox);
+            this.twelveKGroup.Controls.Add(this.CWTLabel);
+            this.twelveKGroup.Controls.Add(this.CWTBox);
+            this.twelveKGroup.Controls.Add(this.tenKDiscLabel);
+            this.twelveKGroup.Location = new System.Drawing.Point(12, 6);
+            this.twelveKGroup.Name = "twelveKGroup";
+            this.twelveKGroup.Size = new System.Drawing.Size(198, 100);
+            this.twelveKGroup.TabIndex = 5;
+            this.twelveKGroup.TabStop = false;
+            this.twelveKGroup.Text = "12,000 lb Amounts";
             // 
             // tenKGrossLabel
             // 
@@ -929,8 +929,8 @@ namespace Linear_Foot_Calculator
             this.totalsGroup.PerformLayout();
             this.actualAmtGroup.ResumeLayout(false);
             this.actualAmtGroup.PerformLayout();
-            this.tenKGroup.ResumeLayout(false);
-            this.tenKGroup.PerformLayout();
+            this.twelveKGroup.ResumeLayout(false);
+            this.twelveKGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -994,7 +994,7 @@ namespace Linear_Foot_Calculator
         private System.Windows.Forms.Label gmsAmount;
         private System.Windows.Forms.Label fscAmount;
         private System.Windows.Forms.Label actualWgtLabel;
-        private System.Windows.Forms.GroupBox tenKGroup;
+        private System.Windows.Forms.GroupBox twelveKGroup;
         private System.Windows.Forms.Label tenKGrossLabel;
         private System.Windows.Forms.TextBox tenKGrossBox;
         private System.Windows.Forms.Label CWTLabel;
