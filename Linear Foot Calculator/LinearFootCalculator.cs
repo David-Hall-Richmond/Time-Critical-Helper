@@ -369,7 +369,7 @@ namespace Linear_Foot_Calculator
             Int32.TryParse(actualWgtBox.Text, out actualWeight);
             Decimal.TryParse(fuelBox.Text, out fuelPercent);
             fuelPercent /= 100;
-            Decimal.TryParse(gmsChargeBox.Text, out gmsCharge);
+            //Decimal.TryParse(gmsChargeBox.Text, out gmsCharge);
             Decimal.TryParse(accessBox.Text, out totalAccessorials);
 
             actualGross = (actualWeight / 100) * CWT;
@@ -378,15 +378,47 @@ namespace Linear_Foot_Calculator
             actualDiscountAmount = actualGross * actualDiscountPercentage;
             netTotal = actualGross - actualDiscountAmount;
             fuelTotal = netTotal * fuelPercent;
-            netTotal += fuelTotal;
-            totalCharge = netTotal + totalAccessorials + gmsCharge;
+            netTotal += fuelTotal + totalAccessorials;
+ 
 
-            actGrossResultLabel.Text = "$" + actualGross.ToString("F");
-            actDiscPercLabel.Text = "$" + percentForDisplay.ToString("F");
-            actDiscAmtLabel.Text = "$" + actualDiscountAmount.ToString("F");
-            fuelSurchResultLabel.Text = "$" + fuelTotal.ToString("F");
-            netChargeLabel.Text = "$" + netTotal.ToString("F");
-            totalChargeResultLabel.Text = "$" + totalCharge.ToString("F");
+            string actGrossString = "$" + actualGross.ToString("F");
+            string actDiscAmountString = "$" + actualDiscountAmount.ToString("F");
+            string fuelTotalString = "$" + fuelTotal.ToString("F"); ;
+            string netTotalString = "$" + netTotal.ToString("F");
+            string twelveKGrossString = "$" + twelveKGross.ToString("F");
+            string twelveKDiscountString = "$" + twelveKDiscount.ToString("F");
+            string CWTString = "$" + CWTBox.Text;
+            string fscString = fuelBox.Text + "%";
+            string percDisplayString = percentForDisplay + "%";
+            
+            actGrossResultLabel.Text = actGrossString;
+            actDiscPercLabel.Text = percDisplayString;
+            actDiscAmtLabel.Text = actDiscAmountString;
+            fuelSurchResultLabel.Text = fuelTotalString;
+            netChargeLabel.Text = netTotalString;
+            //totalChargeResultLabel.Text = totalChargeString; 
+            string noteString = createSpecPricingNotes(actGrossString, actDiscAmountString, fscString, fuelTotalString,
+                netTotalString, twelveKGrossString, twelveKDiscountString, CWTString,totalAccessorials);
+            copyNotes.Text = noteString;
+            Clipboard.SetText(noteString);
+        }
+
+        private string createSpecPricingNotes(string actGross,string actDisc, string fuelPerc,string fuelTotal,string actNet
+          ,string twelveKGross,string twelveKDisc,string CWT,decimal totalAccess)
+        {
+            string newNote = "";
+            newNote += "11,999LB GROSS: "+ twelveKGross +" DISC: " + twelveKDisc + "\r\n";
+            newNote += "11,999 CWT: "+ CWT+ " FSC %: " + fuelPerc + "\r\n";
+            newNote += actualWgtBox.Text + "LB GROSS: " + actGross + " DISC: " + actDisc + "\r\n";
+            if (totalAccess > 0)
+            {
+                string totalAccessorialsString = "$" + totalAccess.ToString("F");
+                newNote += "Total accessorials: " + totalAccessorialsString + "\r\n";
+            }
+            newNote += actualWgtBox.Text +"LB NET:" + actNet;
+            
+
+            return newNote;
         }
         private void calculateTotalButton_Click(object sender, EventArgs e)
         {
@@ -402,14 +434,13 @@ namespace Linear_Foot_Calculator
             actualWgtBox.Text = "";
             fuelBox.Text = "";
 
-            gmsChargeBox.Text = "";
+            
             accessBox.Text = "";
             actGrossResultLabel.Text = "";
             actDiscPercLabel.Text = "";
             actDiscAmtLabel.Text = "";
             fuelSurchResultLabel.Text = "";
             netChargeLabel.Text = "";
-            totalChargeResultLabel.Text = "";
         }
     }
 }

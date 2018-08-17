@@ -79,8 +79,11 @@ namespace Linear_Foot_Calculator
             this.clearFieldsButton = new System.Windows.Forms.Button();
             this.calculateTotalButton = new System.Windows.Forms.Button();
             this.totalsGroup = new System.Windows.Forms.GroupBox();
+            this.netChargeLabel = new System.Windows.Forms.Label();
+            this.fuelSurchResultLabel = new System.Windows.Forms.Label();
+            this.actDiscAmtLabel = new System.Windows.Forms.Label();
+            this.actDiscPercLabel = new System.Windows.Forms.Label();
             this.actGrossResultLabel = new System.Windows.Forms.Label();
-            this.totalChargeLabel = new System.Windows.Forms.Label();
             this.actualGrossLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -88,11 +91,9 @@ namespace Linear_Foot_Calculator
             this.discPercentLabel = new System.Windows.Forms.Label();
             this.actualAmtGroup = new System.Windows.Forms.GroupBox();
             this.accessBox = new System.Windows.Forms.TextBox();
-            this.gmsChargeBox = new System.Windows.Forms.TextBox();
             this.fuelBox = new System.Windows.Forms.TextBox();
             this.actualWgtBox = new System.Windows.Forms.TextBox();
             this.accessAmount = new System.Windows.Forms.Label();
-            this.gmsAmount = new System.Windows.Forms.Label();
             this.fscAmount = new System.Windows.Forms.Label();
             this.actualWgtLabel = new System.Windows.Forms.Label();
             this.twelveKGroup = new System.Windows.Forms.GroupBox();
@@ -102,11 +103,6 @@ namespace Linear_Foot_Calculator
             this.CWTLabel = new System.Windows.Forms.Label();
             this.CWTBox = new System.Windows.Forms.TextBox();
             this.tenKDiscLabel = new System.Windows.Forms.Label();
-            this.actDiscPercLabel = new System.Windows.Forms.Label();
-            this.actDiscAmtLabel = new System.Windows.Forms.Label();
-            this.fuelSurchResultLabel = new System.Windows.Forms.Label();
-            this.netChargeLabel = new System.Windows.Forms.Label();
-            this.totalChargeResultLabel = new System.Windows.Forms.Label();
             this.notesOutputGroup.SuspendLayout();
             this.spotQuoteTab.SuspendLayout();
             this.spotQuoteHelperGroup.SuspendLayout();
@@ -628,13 +624,11 @@ namespace Linear_Foot_Calculator
             // 
             // totalsGroup
             // 
-            this.totalsGroup.Controls.Add(this.totalChargeResultLabel);
             this.totalsGroup.Controls.Add(this.netChargeLabel);
             this.totalsGroup.Controls.Add(this.fuelSurchResultLabel);
             this.totalsGroup.Controls.Add(this.actDiscAmtLabel);
             this.totalsGroup.Controls.Add(this.actDiscPercLabel);
             this.totalsGroup.Controls.Add(this.actGrossResultLabel);
-            this.totalsGroup.Controls.Add(this.totalChargeLabel);
             this.totalsGroup.Controls.Add(this.actualGrossLabel);
             this.totalsGroup.Controls.Add(this.label7);
             this.totalsGroup.Controls.Add(this.label6);
@@ -648,6 +642,42 @@ namespace Linear_Foot_Calculator
             this.totalsGroup.Text = "Calculated Totals";
             this.totalsGroup.Enter += new System.EventHandler(this.totalsGroup_Enter);
             // 
+            // netChargeLabel
+            // 
+            this.netChargeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.netChargeLabel.Location = new System.Drawing.Point(124, 179);
+            this.netChargeLabel.Name = "netChargeLabel";
+            this.netChargeLabel.Size = new System.Drawing.Size(61, 20);
+            this.netChargeLabel.TabIndex = 15;
+            this.netChargeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // fuelSurchResultLabel
+            // 
+            this.fuelSurchResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fuelSurchResultLabel.Location = new System.Drawing.Point(124, 103);
+            this.fuelSurchResultLabel.Name = "fuelSurchResultLabel";
+            this.fuelSurchResultLabel.Size = new System.Drawing.Size(61, 20);
+            this.fuelSurchResultLabel.TabIndex = 14;
+            this.fuelSurchResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // actDiscAmtLabel
+            // 
+            this.actDiscAmtLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.actDiscAmtLabel.Location = new System.Drawing.Point(124, 77);
+            this.actDiscAmtLabel.Name = "actDiscAmtLabel";
+            this.actDiscAmtLabel.Size = new System.Drawing.Size(61, 20);
+            this.actDiscAmtLabel.TabIndex = 13;
+            this.actDiscAmtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // actDiscPercLabel
+            // 
+            this.actDiscPercLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.actDiscPercLabel.Location = new System.Drawing.Point(124, 52);
+            this.actDiscPercLabel.Name = "actDiscPercLabel";
+            this.actDiscPercLabel.Size = new System.Drawing.Size(61, 20);
+            this.actDiscPercLabel.TabIndex = 12;
+            this.actDiscPercLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // actGrossResultLabel
             // 
             this.actGrossResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -655,15 +685,7 @@ namespace Linear_Foot_Calculator
             this.actGrossResultLabel.Name = "actGrossResultLabel";
             this.actGrossResultLabel.Size = new System.Drawing.Size(61, 20);
             this.actGrossResultLabel.TabIndex = 11;
-            // 
-            // totalChargeLabel
-            // 
-            this.totalChargeLabel.AutoSize = true;
-            this.totalChargeLabel.Location = new System.Drawing.Point(12, 202);
-            this.totalChargeLabel.Name = "totalChargeLabel";
-            this.totalChargeLabel.Size = new System.Drawing.Size(68, 13);
-            this.totalChargeLabel.TabIndex = 10;
-            this.totalChargeLabel.Text = "Total Charge";
+            this.actGrossResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // actualGrossLabel
             // 
@@ -677,11 +699,11 @@ namespace Linear_Foot_Calculator
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 130);
+            this.label7.Location = new System.Drawing.Point(17, 180);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 3;
-            this.label7.Text = "Net Charge";
+            this.label7.Text = "STD LTL Charge";
             // 
             // label6
             // 
@@ -713,11 +735,9 @@ namespace Linear_Foot_Calculator
             // actualAmtGroup
             // 
             this.actualAmtGroup.Controls.Add(this.accessBox);
-            this.actualAmtGroup.Controls.Add(this.gmsChargeBox);
             this.actualAmtGroup.Controls.Add(this.fuelBox);
             this.actualAmtGroup.Controls.Add(this.actualWgtBox);
             this.actualAmtGroup.Controls.Add(this.accessAmount);
-            this.actualAmtGroup.Controls.Add(this.gmsAmount);
             this.actualAmtGroup.Controls.Add(this.fscAmount);
             this.actualAmtGroup.Controls.Add(this.actualWgtLabel);
             this.actualAmtGroup.Location = new System.Drawing.Point(12, 112);
@@ -731,18 +751,10 @@ namespace Linear_Foot_Calculator
             // accessBox
             // 
             this.accessBox.AcceptsTab = true;
-            this.accessBox.Location = new System.Drawing.Point(127, 97);
+            this.accessBox.Location = new System.Drawing.Point(127, 71);
             this.accessBox.Name = "accessBox";
             this.accessBox.Size = new System.Drawing.Size(61, 20);
             this.accessBox.TabIndex = 9;
-            // 
-            // gmsChargeBox
-            // 
-            this.gmsChargeBox.AcceptsTab = true;
-            this.gmsChargeBox.Location = new System.Drawing.Point(127, 70);
-            this.gmsChargeBox.Name = "gmsChargeBox";
-            this.gmsChargeBox.Size = new System.Drawing.Size(61, 20);
-            this.gmsChargeBox.TabIndex = 8;
             // 
             // fuelBox
             // 
@@ -763,20 +775,11 @@ namespace Linear_Foot_Calculator
             // accessAmount
             // 
             this.accessAmount.AutoSize = true;
-            this.accessAmount.Location = new System.Drawing.Point(9, 100);
+            this.accessAmount.Location = new System.Drawing.Point(9, 74);
             this.accessAmount.Name = "accessAmount";
             this.accessAmount.Size = new System.Drawing.Size(93, 13);
             this.accessAmount.TabIndex = 3;
             this.accessAmount.Text = "Total Accessorials";
-            // 
-            // gmsAmount
-            // 
-            this.gmsAmount.AutoSize = true;
-            this.gmsAmount.Location = new System.Drawing.Point(9, 73);
-            this.gmsAmount.Name = "gmsAmount";
-            this.gmsAmount.Size = new System.Drawing.Size(68, 13);
-            this.gmsAmount.TabIndex = 2;
-            this.gmsAmount.Text = "GMS Charge";
             // 
             // fscAmount
             // 
@@ -809,7 +812,7 @@ namespace Linear_Foot_Calculator
             this.twelveKGroup.Size = new System.Drawing.Size(198, 100);
             this.twelveKGroup.TabIndex = 5;
             this.twelveKGroup.TabStop = false;
-            this.twelveKGroup.Text = "12,000 lb Amounts";
+            this.twelveKGroup.Text = "11,999 lb Amounts";
             // 
             // tenKGrossLabel
             // 
@@ -861,46 +864,6 @@ namespace Linear_Foot_Calculator
             this.tenKDiscLabel.Size = new System.Drawing.Size(49, 13);
             this.tenKDiscLabel.TabIndex = 2;
             this.tenKDiscLabel.Text = "Discount";
-            // 
-            // actDiscPercLabel
-            // 
-            this.actDiscPercLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.actDiscPercLabel.Location = new System.Drawing.Point(124, 52);
-            this.actDiscPercLabel.Name = "actDiscPercLabel";
-            this.actDiscPercLabel.Size = new System.Drawing.Size(61, 20);
-            this.actDiscPercLabel.TabIndex = 12;
-            // 
-            // actDiscAmtLabel
-            // 
-            this.actDiscAmtLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.actDiscAmtLabel.Location = new System.Drawing.Point(124, 77);
-            this.actDiscAmtLabel.Name = "actDiscAmtLabel";
-            this.actDiscAmtLabel.Size = new System.Drawing.Size(61, 20);
-            this.actDiscAmtLabel.TabIndex = 13;
-            // 
-            // fuelSurchResultLabel
-            // 
-            this.fuelSurchResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.fuelSurchResultLabel.Location = new System.Drawing.Point(124, 103);
-            this.fuelSurchResultLabel.Name = "fuelSurchResultLabel";
-            this.fuelSurchResultLabel.Size = new System.Drawing.Size(61, 20);
-            this.fuelSurchResultLabel.TabIndex = 14;
-            // 
-            // netChargeLabel
-            // 
-            this.netChargeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.netChargeLabel.Location = new System.Drawing.Point(124, 129);
-            this.netChargeLabel.Name = "netChargeLabel";
-            this.netChargeLabel.Size = new System.Drawing.Size(61, 20);
-            this.netChargeLabel.TabIndex = 15;
-            // 
-            // totalChargeResultLabel
-            // 
-            this.totalChargeResultLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.totalChargeResultLabel.Location = new System.Drawing.Point(124, 201);
-            this.totalChargeResultLabel.Name = "totalChargeResultLabel";
-            this.totalChargeResultLabel.Size = new System.Drawing.Size(61, 20);
-            this.totalChargeResultLabel.TabIndex = 16;
             // 
             // TimeCriticalHelper
             // 
@@ -991,7 +954,6 @@ namespace Linear_Foot_Calculator
         private System.Windows.Forms.TextBox tenKDiscBox;
         private System.Windows.Forms.TextBox CWTBox;
         private System.Windows.Forms.Label accessAmount;
-        private System.Windows.Forms.Label gmsAmount;
         private System.Windows.Forms.Label fscAmount;
         private System.Windows.Forms.Label actualWgtLabel;
         private System.Windows.Forms.GroupBox twelveKGroup;
@@ -1001,19 +963,16 @@ namespace Linear_Foot_Calculator
         private System.Windows.Forms.Label tenKDiscLabel;
         private System.Windows.Forms.GroupBox totalsGroup;
         private System.Windows.Forms.TextBox accessBox;
-        private System.Windows.Forms.TextBox gmsChargeBox;
         private System.Windows.Forms.TextBox fuelBox;
         private System.Windows.Forms.TextBox actualWgtBox;
         private System.Windows.Forms.Button clearFieldsButton;
         private System.Windows.Forms.Button calculateTotalButton;
-        private System.Windows.Forms.Label totalChargeLabel;
         private System.Windows.Forms.Label actualGrossLabel;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label actualDiscAmount;
         private System.Windows.Forms.Label discPercentLabel;
         private System.Windows.Forms.Label actGrossResultLabel;
-        private System.Windows.Forms.Label totalChargeResultLabel;
         private System.Windows.Forms.Label netChargeLabel;
         private System.Windows.Forms.Label fuelSurchResultLabel;
         private System.Windows.Forms.Label actDiscAmtLabel;
